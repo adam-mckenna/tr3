@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prettier": "npx prettier -w ."
+    "prettier": "npx prettier -w .",
+    "docker": "docker compose -f docker-compose.dev.yml up --build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",

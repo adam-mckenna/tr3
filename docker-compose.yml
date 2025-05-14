@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules  # prevents overwriting node_modules from volume
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # helps hot reloading on some systems
