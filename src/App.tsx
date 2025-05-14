@@ -4,10 +4,10 @@ import "./App.css";
 
 const App = () => {
   return (
-    <main>
+    <main className="min-h-screen bg-chardon">
       <Header />
 
-      <section className="w-full">content here</section>
+      <section className="w-full max-w-128 mx-auto py-3">content here</section>
     </main>
   );
 };
