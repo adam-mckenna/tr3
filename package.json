@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prettier": "npx prettier -w .",
-    "docker": "docker compose -f docker-compose.dev.yml up --build"
+    "docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:build": "docker compose -f docker-compose.yml up --build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
