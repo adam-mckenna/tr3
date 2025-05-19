@@ -5,8 +5,8 @@
 @theme {
   --color-chardon: #f9f1e9;
   --color-elba: #252621;
-}
-
-* {
-  font-family: "Inter", sans-serif;
+  --color-philippine-grey: #8c8c8c;
+  --color-sea-blue: #05668d;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Georgia", "serif";
 }
