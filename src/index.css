@@ -10,3 +10,8 @@
   --font-sans: "Inter", sans-serif;
   --font-serif: "Georgia", "serif";
 }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
