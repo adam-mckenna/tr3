@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
+
 export const Header = () => (
   <header className="py-3 bg-elba text-chardon">
     <nav className="flex justify-between max-w-128 mx-auto">
       <h1 className="font-[800] letter-spacing-[.2px] text-lg">
-        <a href="/">adamcantrun</a>
+        <Link to="/">adamcantrun</Link>
       </h1>
       <ul className="flex gap-4 items-center justify-center">
         <li>
-          <a href="/about" className="text-sm">
+          <Link to="/about" className="text-sm">
             about
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/" className="text-sm">
+          <Link to="/" className="text-sm">
             posts
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
