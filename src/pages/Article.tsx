@@ -5,6 +5,7 @@ import client from "../contentfulClient";
 
 import { getFormattedDate } from "../utils/helpers";
 import { RichTextRenderer } from "../components/RichTextRenderer";
+import { DisqusComments } from "../components/Disqus";
 
 export const Article = () => {
   const [article, setArticle] = useState<object>();
@@ -72,6 +73,15 @@ export const Article = () => {
       <section className="bg-white w-full min-h-[400px] -mt-[150px]">
         <div className="grid gap-4 w-full max-w-128 mx-auto pt-[172px] pb-8">
           <RichTextRenderer body={article.fields.body} />
+
+          <hr className="border-t opacity-10 mt-4 border-philippine-grey" />
+
+          <DisqusComments
+            className="mt-6"
+            title={article.fields.title}
+            url={`${window.location.origin}${location.pathname}`}
+            id={article.sys.id}
+          />
         </div>
       </section>
     </>

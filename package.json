@@ -17,7 +17,9 @@
     "@contentful/rich-text-types": "^17.0.0",
     "@tailwindcss/vite": "^4.1.6",
     "contentful": "^11.5.23",
+    "disqus-react": "^1.1.6",
     "prettier": "^3.5.3",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.6.0"
