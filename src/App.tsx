@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { Home, About, Post, NotFound } from "./pages";
+import { Home, About, Article, NotFound } from "./pages";
 import { Header } from "./components";
 
 import "./App.css";
@@ -19,7 +19,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/articles/:slug" element={<Post />} />
+          <Route path="/articles/:slug" element={<Article />} />
           <Route path="/articles" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

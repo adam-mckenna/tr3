@@ -1,6 +1,6 @@
 import { Home } from "./Home";
 import { About } from "./About";
-import { Post } from "./Post";
+import { Article } from "./Article";
 import { NotFound } from "./NotFound";
 
-export { Home, About, Post, NotFound };
+export { Home, About, Article, NotFound };

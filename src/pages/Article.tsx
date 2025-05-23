@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import client from "../contentfulClient";
-import { getFormattedDate } from "../utils/helpers";
 
-export const Post = () => {
+import { getFormattedDate } from "../utils/helpers";
+import { RichTextRenderer } from "../components/RichTextRenderer";
+
+export const Article = () => {
   const [article, setArticle] = useState<object>();
 
   const { slug } = useParams<{ slug: string }>();
@@ -12,12 +14,12 @@ export const Post = () => {
   const getEntryBySlug = async (slug: string) => {
     const response = await client.getEntries({
       content_type: "article",
-      "fields.slug": slug, 
+      "fields.slug": slug,
       limit: 1,
     });
 
     if (response.items.length > 0) {
-      return response.items[0]; 
+      return response.items[0];
     } else {
       return null;
     }
@@ -67,7 +69,11 @@ export const Post = () => {
         </p>
       </section>
 
-      <section className="bg-white w-full min-h-[400px] -mt-[150px]"></section>
+      <section className="bg-white w-full min-h-[400px] -mt-[150px]">
+        <div className="grid gap-4 w-full max-w-128 mx-auto pt-[172px] pb-8">
+          <RichTextRenderer body={article.fields.body} />
+        </div>
+      </section>
     </>
   ) : (
     <></>

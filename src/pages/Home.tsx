@@ -35,7 +35,7 @@ export const Home = () => {
         {articles.map(({ fields }) => {
           const { title, slug, category, metaDescription, publishedDate } =
             fields;
-            
+
           return (
             <article className="mb-4">
               <p className="font-serif text-philippine-grey text-xs mb-[2px]">
