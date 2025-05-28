@@ -30,7 +30,7 @@ export const Home = () => {
 
       <section className="grid w-full max-w-128 mx-auto gap-3 px-6 md:p-0 md:pt-8 ">
         <h2 className="text-elba font-[600] text-[22px] -tracking-[1.25px]">
-          Latest articles
+          latest articles
         </h2>
 
         {articles.map(({ fields }) => {
@@ -46,7 +46,7 @@ export const Home = () => {
               <h3 className="font-semibold text-elba -tracking-[.8px]">
                 <a href={`articles/${slug}`}>{title}</a>
               </h3>
-              <p className="text-sm text-philippine-grey font-[300] mb-[6px] -tracking-[.45px] leading-[22px] mt-[2px]">
+              <p className="text-sm text-philippine-grey font-[300] mb-[6px] -tracking-[.45px] leading-[20px] mt-[1px]">
                 {metaDescription}
               </p>
               <p className="flex items-center gap-1.5 font-[300] text-philippine-grey text-[10px]">
