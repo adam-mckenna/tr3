@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export const Header = () => (
-  <header className="py-3 bg-elba text-chardon">
+  <header className="px-6 py-3 bg-elba text-chardon md:px-0">
     <nav className="flex justify-between max-w-128 mx-auto">
       <h1 className="font-[800] letter-spacing-[.2px] text-lg">
         <Link to="/">adamcantrun</Link>

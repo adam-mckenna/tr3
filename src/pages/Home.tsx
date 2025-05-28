@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <>
-      <section className="w-full max-w-128 mx-auto pt-12">
+      <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
         <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
           let's talk about running.
         </h1>
@@ -27,7 +27,7 @@ export const Home = () => {
         </p>
       </section>
 
-      <section className="grid w-full max-w-128 mx-auto pt-8 gap-3">
+      <section className="grid w-full max-w-128 mx-auto gap-3 px-6 md:p-0 md:pt-8 ">
         <h2 className="text-elba font-[600] text-[22px] -tracking-[1.25px]">
           Latest articles
         </h2>

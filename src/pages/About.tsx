@@ -1,5 +1,5 @@
 export const About = () => (
-  <section className="w-full max-w-128 mx-auto pt-12">
+  <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
     <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
       Hi, my name is Adam.
     </h1>

@@ -38,7 +38,7 @@ export const Article = () => {
 
   return article ? (
     <>
-      <section className="w-full max-w-128 mx-auto pt-12">
+      <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
         <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
           {article?.fields?.title}
         </h1>
@@ -70,8 +70,8 @@ export const Article = () => {
         </p>
       </section>
 
-      <section className="bg-white w-full min-h-[400px] -mt-[150px]">
-        <div className="grid gap-4 w-full max-w-128 mx-auto pt-[172px] pb-8">
+      <section className="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-4 md:p-0">
+        <div className="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8">
           <RichTextRenderer body={article.fields.body} />
 
           <hr className="border-t opacity-10 mt-4 border-philippine-grey" />
