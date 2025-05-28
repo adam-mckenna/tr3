@@ -1,8 +1,13 @@
 import { DiscussionEmbed } from "disqus-react";
 
-export const DisqusComments = ({ className, url, id, title }) => (
+interface DisqusCommentsProps {
+  url: string;
+  id: string;
+  title: string;
+}
+
+export const DisqusComments = ({ url, id, title }: DisqusCommentsProps) => (
   <DiscussionEmbed
-    className={className}
     shortname="adamcantrun"
     config={{
       url,

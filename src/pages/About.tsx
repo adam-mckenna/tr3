@@ -31,7 +31,7 @@ export const About = () => (
       <div className="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8">
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
           I started running in 2017. Like most people in the North East, my
-          running journey began with the{" "}
+          running journey began with the&nbsp;
           <a
             className="text-sea-blue underline"
             href="https://www.greatrun.org/events/great-north-run/"
@@ -46,15 +46,15 @@ export const About = () => (
           running.
         </p>
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
-          By 2025, I had ran marathons all over the world, from{" "}
+          By 2025, I had ran marathons all over the world, from&nbsp;
           <a
             href="https://www.strava.com/activities/13018814997"
             className="text-sea-blue underline"
             target="_blank"
           >
             Thailand
-          </a>{" "}
-          to{" "}
+          </a>
+          &nbsp; to&nbsp;
           <a
             href="https://www.strava.com/activities/10737248846"
             className="text-sea-blue underline"
