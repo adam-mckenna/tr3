@@ -12,7 +12,7 @@ export const About = () => (
       <div
         className="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-position-[50%_100%]"
         style={{
-          backgroundImage: `url('./src/assets/images/adam_mckenna_running.jpg')`,
+          backgroundImage: `url('/images/adam_mckenna_running.jpg')`,
         }}
       />
       <p className="text-philippine-grey text-xs font-light mt-2">
