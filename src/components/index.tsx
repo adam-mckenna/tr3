@@ -1,3 +1,5 @@
+import { DisqusComments } from "./DisqusComments";
 import { Header } from "./Header";
+import { RichTextRenderer } from "./RichTextRenderer";
 
-export { Header };
+export { DisqusComments, Header, RichTextRenderer };

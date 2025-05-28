@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 
 import client from "../contentfulClient";
 
+import { DisqusComments, RichTextRenderer } from "../components";
 import { getFormattedDate } from "../utils/helpers";
-import { RichTextRenderer } from "../components/RichTextRenderer";
-import { DisqusComments } from "../components/Disqus";
 
 export const Article = () => {
   const [article, setArticle] = useState<object>();
