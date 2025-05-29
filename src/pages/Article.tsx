@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import { Entry, EntrySkeletonType } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-import client from "../contentfulClient";
-
-import { DisqusComments, RichTextRenderer } from "@components";
+import { DisqusComments, RichTextRenderer, MetaTags } from "@components";
 import { getFormattedDate } from "@utils/helpers";
+
+import client from "../contentfulClient";
 
 type ArticleSkeleton = EntrySkeletonType & {
   contentTypeId: "article";
@@ -56,6 +56,19 @@ export const Article = () => {
 
   return article ? (
     <>
+      <MetaTags
+        title={article.fields.title as unknown as string}
+        description={article.fields.metaDescription as unknown as string}
+        image={
+          (
+            article.fields.featuredImage.fields as unknown as {
+              file: { url: string };
+            }
+          ).file.url
+        }
+        type="article"
+      />
+
       <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
         <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
           {article.fields.title as unknown as string}
