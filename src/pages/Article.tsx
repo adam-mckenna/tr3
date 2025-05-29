@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Entry, EntrySkeletonType } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-import { DisqusComments, RichTextRenderer, MetaTags } from "@components";
+import { DisqusComments, RichTextRenderer, MetaTags, StructuredData } from "@components";
 import { getFormattedDate } from "@utils/helpers";
 
 import client from "../contentfulClient";
@@ -59,14 +59,16 @@ export const Article = () => {
       <MetaTags
         title={article.fields.title as unknown as string}
         description={article.fields.metaDescription as unknown as string}
-        image={
-          (
-            article.fields.featuredImage.fields as unknown as {
-              file: { url: string };
-            }
-          ).file.url
-        }
+        image={(article.fields.featuredImage.fields as unknown as { file: { url: string } }).file.url}
         type="article"
+      />
+      <StructuredData
+        title={article.fields.title as unknown as string}
+        description={article.fields.metaDescription as unknown as string}
+        datePublished={article.fields.publishedDate as unknown as string}
+        author="Adam McKenna"
+        url={window.location.href}
+        image={(article.fields.featuredImage.fields as unknown as { file: { url: string } }).file.url}
       />
 
       <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
