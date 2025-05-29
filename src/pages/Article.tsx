@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { Entry, EntrySkeletonType } from "contentful";
+import { Document } from "@contentful/rich-text-types";
 
 import client from "../contentfulClient";
 
-import { DisqusComments, RichTextRenderer } from "../components";
-import { getFormattedDate } from "../utils/helpers";
-import { Document } from "@contentful/rich-text-types";
+import { DisqusComments, RichTextRenderer } from "@components";
+import { getFormattedDate } from "@utils/helpers";
 
 type ArticleSkeleton = EntrySkeletonType & {
   contentTypeId: "article";

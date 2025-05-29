@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import client from "../contentfulClient";
 
-import { getFormattedDate } from "../utils/helpers";
+import { getFormattedDate } from "@utils/helpers";
 
 export const Home = () => {
   const [articles, setArticles] = useState([]);

@@ -12,4 +12,20 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
+  },
+  resolve: {
+    alias: {
+      "@components": "/src/components",
+      "@pages": "/src/pages",
+      "@utils": "/src/utils",
+    },
+  },
 });
