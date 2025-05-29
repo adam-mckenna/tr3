@@ -56,7 +56,7 @@ export const Home = () => {
                   <a
                     className="text-sea-blue underline font-medium"
                     target="_blank"
-                    href="https://www.instagram.com/adamcantrun"
+                    href="https://www.instagram.com/adamcantrun/"
                   >
                     Adam McKenna
                   </a>

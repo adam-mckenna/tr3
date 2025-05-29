@@ -27,16 +27,16 @@ export const StructuredData = ({
       name: author,
     },
     datePublished: datePublished,
-    image: image || "https://adamcantrun.com/default-image.jpg",
+    image: image || "https://adamcantrun.com/adam_mckenna_running.jpg",
     url: url,
     publisher: {
       "@type": "Organization",
       name: "adamcantrun",
       logo: {
         "@type": "ImageObject",
-        url: "https://adamcantrun.com/logo.png"
-      }
-    }
+        url: "https://adamcantrun.com/adam_mckenna_running.jpg",
+      },
+    },
   };
 
   return (
@@ -46,4 +46,4 @@ export const StructuredData = ({
       </script>
     </Helmet>
   );
-}; 
+};
