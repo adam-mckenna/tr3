@@ -25,7 +25,7 @@ ${routes
     <loc>https://adamcantrun.com${route}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;
