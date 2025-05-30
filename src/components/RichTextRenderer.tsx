@@ -4,7 +4,7 @@ import {
   documentToReactComponents,
   Options,
 } from "@contentful/rich-text-react-renderer";
-import { Document, BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import { Document, BLOCKS, INLINES, MARKS, AssetLinkBlock } from "@contentful/rich-text-types";
 
 type Props = {
   body: Document;
@@ -43,10 +43,26 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
       ),
       [BLOCKS.LIST_ITEM]: (_node, children) => <li>{children}</li>,
       [INLINES.HYPERLINK]: (node, children) => (
-        <a href={node.data.uri} target="_blank" className="text-sea-blue" rel="noopener noreferrer">
+        <a href={node.data.uri} target="_blank" className="text-sea-blue underline" rel="noopener noreferrer">
           {children}
         </a>
       ),
+      [BLOCKS.EMBEDDED_ASSET]: (node: AssetLinkBlock) => {
+        const { file, description, title } = node.data.target.fields;
+
+        if (!file?.url) return null;
+
+        return (
+          <>
+          <img
+            src={file.url.startsWith("//") ? `https:${file.url}` : file.url}
+            alt={description || title || "Image"}
+            className="mt-2 rounded-lg max-w-full h-auto"
+            />
+            <p className="text-philippine-grey text-xs font-light -mt-2">{description || title}</p>
+          </>
+        );
+      },
     },
   };
 
