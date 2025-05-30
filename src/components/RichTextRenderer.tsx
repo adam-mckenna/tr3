@@ -43,7 +43,7 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
       ),
       [BLOCKS.LIST_ITEM]: (_node, children) => <li>{children}</li>,
       [INLINES.HYPERLINK]: (node, children) => (
-        <a href={node.data.uri} target="_blank" rel="noopener noreferrer">
+        <a href={node.data.uri} target="_blank" className="text-sea-blue" rel="noopener noreferrer">
           {children}
         </a>
       ),
