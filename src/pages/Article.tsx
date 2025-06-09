@@ -92,10 +92,10 @@ export const Article = () => {
         <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
           {article.fields.title as unknown as string}
         </h1>
-        <p className="text-philippine-grey text-xl leading-[25.5px] -tracking-[.5px] font-serif mt-1">
+        <p className="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]">
           {article.fields.metaDescription as unknown as string}
         </p>
-        <p className="flex items-center gap-1.5 mt-3 font-[300] text-philippine-grey text-[10px]">
+        <p className="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm">
           <span>
             {getFormattedDate(
               article.fields.publishedDate as unknown as string,

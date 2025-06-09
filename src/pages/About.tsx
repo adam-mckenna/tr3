@@ -4,7 +4,7 @@ export const About = () => (
       <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
         Hello, my name is Adam.
       </h1>
-      <p className="text-philippine-grey text-xl leading-[25.5px] -tracking-[.5px] font-serif mt-1">
+      <p className="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[4px]">
         I'm a passionate runner who builds websites for a living. I decided to
         put those two skills together to create this blog.
       </p>
@@ -23,14 +23,14 @@ export const About = () => (
           target="_blank"
         >
           Blyth Links Parkrun
-        </a>
+        </a>.
       </p>
     </section>
 
     <section className="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-12 md:p-0 md:pb-8">
       <div className="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8">
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
-          I started running in 2017. Like most people in the North East, my
+          <span className="font-semibold">I started running in 2017.</span> Like most people from North East England, my
           running journey began with the&nbsp;
           <a
             className="text-sea-blue underline"
@@ -46,7 +46,7 @@ export const About = () => (
           running.
         </p>
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
-          By 2025, I had ran marathons all over the world, from&nbsp;
+          By 2025, I had <span className="font-semibold">ran marathons all over the world</span>, from&nbsp;
           <a
             href="https://www.strava.com/activities/13018814997"
             className="text-sea-blue underline"
@@ -54,7 +54,7 @@ export const About = () => (
           >
             Thailand
           </a>
-          &nbsp; to&nbsp;
+          &nbsp;to&nbsp;
           <a
             href="https://www.strava.com/activities/10737248846"
             className="text-sea-blue underline"
@@ -69,8 +69,7 @@ export const About = () => (
           deep passion: I <i>love</i> running.
         </p>
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
-          In particular, the science of running, nutrition and endurance
-          fascinates me.
+          In particular, the <span className="font-semibold">science of running, nutrition and endurance</span> fascinates me.
         </p>
         <p className="text-elba leading-[1.6] tracking-[-.25px]">
           This blog explores that fascination.
