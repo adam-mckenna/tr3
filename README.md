@@ -1,3 +1,3 @@
 # adamcantrun: a running blog
 
-ToDo: write something useful.
+A simple blog to talk about running. Built with [React](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Vite](https://vite.dev/) and [Contentful](https://www.contentful.com/).

@@ -19,17 +19,17 @@ export const Home = () => {
   return (
     <>
       <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-        <h1 className="font-[700] text-3xl text-elba -tracking-[1.25px]">
-          let's talk about running.
+        <h1 className="font-[800] text-3xl text-elba -tracking-[.55px] uppercase hidden">
+          All Things Running.
         </h1>
-        <p className="text-philippine-grey text-xl leading-[25.5px] -tracking-[.5px] font-serif mt-1">
-          this blog explores the art and science of optimal training, racing and
+        <p className="text-philippine-grey text-xl leading-[25.5px] -tracking-[.5px] font-serif mt-[2px]">
+          exploring the art and science of optimal training, racing and
           recovery for runners.
         </p>
       </section>
 
-      <section className="grid w-full max-w-128 mx-auto gap-3 px-6 md:p-0 md:pt-8 ">
-        <h2 className="text-elba font-[600] text-[22px] -tracking-[1.25px]">
+      <section className="grid w-full max-w-128 mx-auto gap-5 px-6 md:p-0 md:pt-8 ">
+        <h2 className="text-elba font-[800] text-[22px] -tracking-[.55px] uppercase hidden">
           latest articles
         </h2>
 
@@ -38,23 +38,23 @@ export const Home = () => {
             fields;
 
           return (
-            <article className="mb-4">
-              <p className="font-serif text-philippine-grey text-xs mb-[2px]">
+            <article>
+              <p className="font-serif text-[10px] uppercase mb-[2px] text-[#c4c2c2]">
                 {category}
               </p>
 
-              <h3 className="font-semibold text-elba -tracking-[.8px]">
+              <h3 className="font-bold text-elba -tracking-[.8px] hover:underline focus:underline">
                 <a href={`articles/${slug}`}>{title}</a>
               </h3>
-              <p className="text-sm text-philippine-grey font-[300] mb-[6px] -tracking-[.45px] leading-[20px] mt-[1px]">
+              <p className="text-xs text-philippine-grey font-[200] mb-[2px] -tracking-[.45px] leading-[18px]">
                 {metaDescription}
               </p>
-              <p className="flex items-center gap-1.5 font-[300] text-philippine-grey text-[10px]">
+              <p className="flex items-center gap-1.5 font-[400] text-philippine-grey text-[10px]">
                 <span>{getFormattedDate(publishedDate)}</span>
                 <span className="text-[8px]">//</span>
                 <span>
                   <a
-                    className="text-sea-blue underline font-medium"
+                    className="text-sea-blue font-medium hover:underline focus:underline"
                     target="_blank"
                     href="https://www.instagram.com/adamcantrun/"
                   >
