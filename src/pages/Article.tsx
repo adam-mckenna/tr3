@@ -72,6 +72,7 @@ export const Article = () => {
           ).file.url
         }
         type="article"
+        url={`https://adamcantrun.com/articles/${slug}`}
       />
       <StructuredData
         title={article.fields.title as unknown as string}

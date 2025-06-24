@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import client from "../contentfulClient";
 
 import { getFormattedDate } from "@utils/helpers";
+import { MetaTags } from "@components";
 
 export const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -18,8 +19,14 @@ export const Home = () => {
 
   return (
     <>
+      <MetaTags
+        title="adamcantrun"
+        description="Exploring the art and science of optimal training, racing and recovery for runners. Tips, insights, and personal experiences from a passionate runner."
+        url="https://adamcantrun.com/"
+      />
+
       <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-8">
-        <h1 className="hidden">All Things Running.</h1>
+        <h1 className="sr-only">All Things Running.</h1>
         <p className="text-philippine-grey text-2xl leading-[30.5px] -tracking-[.5px] font-serif mb-[8px]">
           exploring the art and science of optimal training, racing and recovery
           for runners.
@@ -27,7 +34,7 @@ export const Home = () => {
       </section>
 
       <section className="grid w-full max-w-128 mx-auto gap-6 px-6 md:p-0 md:pt-6">
-        <h2 className="hidden">latest articles</h2>
+        <h2 className="sr-only">latest articles</h2>
 
         {articles.map(({ fields }) => {
           const { title, slug, category, metaDescription, publishedDate } =
