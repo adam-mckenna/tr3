@@ -19,11 +19,7 @@ export const Home = () => {
 
   return (
     <>
-      <MetaTags
-        title="adamcantrun"
-        description="Exploring the art and science of optimal training, racing and recovery for runners. Tips, insights, and personal experiences from a passionate runner."
-        url="https://adamcantrun.com/"
-      />
+      <MetaTags url="https://adamcantrun.com/" />
 
       <section className="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-8">
         <h1 className="sr-only">All Things Running.</h1>

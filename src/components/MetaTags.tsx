@@ -9,13 +9,13 @@ interface MetaTagsProps {
 }
 
 export const MetaTags = ({
-  title = "adamcantrun | Running Training & Recovery Blog",
+  title = "Running Training & Recovery Blog | adamcantrun",
   description = "Exploring the art and science of optimal training, racing and recovery for runners.",
   image,
   url = window.location.href,
   type = "website",
 }: MetaTagsProps) => {
-  const fullTitle = title === "adamcantrun" ? title : `${title} | adamcantrun`;
+  const fullTitle = `${title} | adamcantrun`;
 
   return (
     <Helmet>
