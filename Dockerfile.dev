@@ -4,12 +4,16 @@ FROM node:20-alpine
 # Install dependencies (git is required by some packages sometimes)
 RUN apk add --no-cache bash
 
+# Set permissions
+COPY --chown=node:node . /app
+USER node
+
 # Set working directory
 WORKDIR /app
 
 # Install dependencies first — leverage Docker cache
 COPY package*.json ./
-COPY vite.config.ts ./
+COPY astro.config.mjs ./
 RUN npm install
 
 # Copy rest of the app (we'll override this with a volume in dev)

@@ -1,0 +1,82 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { Disqus } from "astro-disqus";
+// todo: fix these imports to be @components/...
+import { RichTextRenderer } from "../components/RichTextRenderer";
+import { getFormattedDate } from "../utils/helpers";
+
+const { title, body, metaDescription, publishedDate, featuredImage } =
+  Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={metaDescription} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
+        <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
+          {title as unknown as string}
+        </h1>
+        <p
+          class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]"
+        >
+          {metaDescription as unknown as string}
+        </p>
+        <p
+          class="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm"
+        >
+          <span>
+            {getFormattedDate(publishedDate as unknown as string)}
+          </span>
+          <span class="text-[8px]">//</span>
+          <span>
+            <a
+              class="text-sea-blue underline font-medium"
+              target="_blank"
+              href="https://www.instagram.com/adamcantrun/"
+            >
+              Adam McKenna
+            </a>
+          </span>
+        </p>
+
+        <div
+          class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('${(featuredImage.fields as unknown as { file: { url: string } }).file.url}')`,
+          }}
+        >
+        </div>
+        <p class="text-philippine-grey text-xs font-light mt-2">
+          {
+            (
+              featuredImage.fields as unknown as {
+                description: string;
+              }
+            ).description
+          }
+        </p>
+      </section>
+
+      <section
+        class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-4 md:p-0"
+      >
+        <div
+          class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
+        >
+          <RichTextRenderer body={body} />
+
+          <hr class="border-t opacity-10 mt-4 border-philippine-grey" />
+
+          <Disqus embed="https://adamcantrun.disqus.com/embed.js" />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
