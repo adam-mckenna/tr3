@@ -45,7 +45,7 @@ const { items } = await contentfulClient.getEntries<Article>({
                 </p>
 
                 <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
-                  <a href={`articles/${slug}`}>{title}</a>
+                  <a href={new URL(`articles/${slug}`, Astro.site)}>{title}</a>
                 </h3>
                 <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
                   {metaDescription}

@@ -5,9 +5,11 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 
+const isProd = process.env.NODE_ENV === "production";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.adamcantrun.com",
+  site: isProd ? "https://www.adamcantrun.com" : "http://localhost:4321",
   integrations: [
     mdx(),
     sitemap(),
