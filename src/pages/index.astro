@@ -14,7 +14,7 @@ const { items } = await contentfulClient.getEntries<Article>({
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true} />
   </head>
   <body class="bg-chardon">
     <Header />
