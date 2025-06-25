@@ -9,7 +9,7 @@ import type { ImageMetadata } from "astro";
 interface Props {
   title: string;
   description: string;
-  isHome?: boolean
+  isHome?: boolean;
   image?: ImageMetadata;
 }
 
@@ -17,7 +17,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { isHome, title, description, image = FallbackImage } = Astro.props;
 
-const metaTitle = isHome ? title : `${title} | adamcantrun | Running Science, Training & Recovery`;
+const metaTitle = isHome
+  ? title
+  : `${title} | adamcantrun | Running Science, Training & Recovery`;
 ---
 
 <!-- Global Metadata -->

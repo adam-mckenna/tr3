@@ -1,7 +1,6 @@
 ---
 import { Article, contentfulClient } from "./../../contentful";
 import Layout from "../../layouts/Article.astro";
-import BaseHead from "../../components/BaseHead.astro";
 
 export async function getStaticPaths() {
   const { items } = await contentfulClient.getEntries<Article>({
@@ -14,16 +13,6 @@ export async function getStaticPaths() {
     },
   }));
 }
-
-const { title, metaDescription } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={metaDescription} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <Layout {...Astro.props} />
-  </body>
-</html>
+<Layout {...Astro.props} />
