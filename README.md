@@ -1,3 +1,3 @@
 # adamcantrun: a running blog
 
-A simple blog to talk about running. Built with [React](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Vite](https://vite.dev/) and [Contentful](https://www.contentful.com/).
+A simple blog to talk about running. Built with [React](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Astro](https://astro.build/) and [Contentful](https://www.contentful.com/).

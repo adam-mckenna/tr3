@@ -18,10 +18,10 @@
     "paths": {
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
-      "@pages": ["src/pages"],
-      "@pages/*": ["src/pages/*"],
       "@utils": ["src/utils"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@layouts": ["src/layouts"],
+      "@layouts/*": ["src/layouts/*"]
     },
 
     /* Linting */

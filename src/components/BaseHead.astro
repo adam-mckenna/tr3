@@ -2,9 +2,12 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
-import { SITE_TITLE } from "../consts";
-import FallbackImage from "./../../public/images/adam_mckenna_running.jpg";
+
 import type { ImageMetadata } from "astro";
+
+import { SITE_TITLE } from "@utils/consts";
+
+import FallbackImage from "./../../public/images/adam_mckenna_running.jpg";
 
 interface Props {
   title: string;

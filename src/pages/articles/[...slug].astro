@@ -1,6 +1,7 @@
 ---
-import { Article, contentfulClient } from "./../../contentful";
-import Layout from "../../layouts/Article.astro";
+import Layout from "@layouts/Article.astro";
+
+import { Article, contentfulClient } from "@utils/contentful";
 
 export async function getStaticPaths() {
   const { items } = await contentfulClient.getEntries<Article>({

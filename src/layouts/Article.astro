@@ -1,15 +1,16 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import { Disqus } from "astro-disqus";
-// todo: fix these imports to be @components/...
-import { RichTextRenderer } from "../components/RichTextRenderer";
-import { getFormattedDate } from "../utils/helpers";
+
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/Header.astro";
+import { RichTextRenderer } from "@components/RichTextRenderer";
+import { getFormattedDate } from "@utils/helpers";
 
 const { title, body, metaDescription, publishedDate, featuredImage } =
   Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={title} description={metaDescription} />
@@ -21,18 +22,18 @@ const { title, body, metaDescription, publishedDate, featuredImage } =
     <main>
       <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
         <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
-          {title as unknown as string}
+          {title}
         </h1>
         <p
           class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]"
         >
-          {metaDescription as unknown as string}
+          {metaDescription}
         </p>
         <p
           class="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm"
         >
           <span>
-            {getFormattedDate(publishedDate as unknown as string)}
+            {getFormattedDate(publishedDate)}
           </span>
           <span class="text-[8px]">//</span>
           <span>
@@ -49,18 +50,12 @@ const { title, body, metaDescription, publishedDate, featuredImage } =
         <div
           class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-center"
           style={{
-            backgroundImage: `url('${(featuredImage.fields as unknown as { file: { url: string } }).file.url}')`,
+            backgroundImage: `url('${featuredImage.fields.file.url}')`,
           }}
         >
         </div>
         <p class="text-philippine-grey text-xs font-light mt-2">
-          {
-            (
-              featuredImage.fields as unknown as {
-                description: string;
-              }
-            ).description
-          }
+          {featuredImage.fields.description}
         </p>
       </section>
 
