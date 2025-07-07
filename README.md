@@ -1,3 +1,8 @@
-# adamcantrun: a running blog
+# Welcome to tr3
 
-A simple blog to talk about running. Built with [React](https://react.dev/), [Tailwind](https://tailwindcss.com/), [Astro](https://astro.build/) and [Contentful](https://www.contentful.com/).
+**_tr3_ is a platform for serious runners, by serious runners.**
+
+We publish authentic, high-quality, science-backed content for recreational athletes who care about performance, not just participation.
+
+## Tech
+The platform is built with [React](https://react.dev/), [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/) and [Contentful CMS](https://www.contentful.com/).

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://adamcantrun.com/sitemap.xml
+Sitemap: https://tr3.run/sitemap.xml
