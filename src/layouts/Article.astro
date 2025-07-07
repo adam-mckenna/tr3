@@ -2,8 +2,9 @@
 import { Disqus } from "astro-disqus";
 
 import BaseHead from "@components/BaseHead.astro";
-import Header from "@components/Header.astro";
+import { Header } from "@components/Header";
 import { RichTextRenderer } from "@components/RichTextRenderer";
+
 import { getFormattedDate } from "@utils/helpers";
 
 const { title, body, metaDescription, publishedDate, featuredImage } =
@@ -17,7 +18,7 @@ const { title, body, metaDescription, publishedDate, featuredImage } =
   </head>
 
   <body class="bg-chardon">
-    <Header />
+    <Header site={Astro.site} client:load />
 
     <main>
       <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
