@@ -1,20 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { SearchResults } from "../components/SearchResults";
+import { Article, contentfulClient } from "../utils/contentful";
+
+const { items } = await contentfulClient.getEntries<Article>({
+  content_type: "article",
+});
 ---
 
 <BaseLayout>
-  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-    <h1 id="title" class="font-[700] text-3xl text-elba -tracking-[1.25px]">
-      Search
-    </h1>
-  </section>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const search = params.get("query");
-    const titleH1 = document.getElementById("title");
-    if (titleH1) {
-      titleH1.textContent = `Results for "${search || ""}"`;
-    }
-  </script>
+  <SearchResults items={items} client:only />
 </BaseLayout>

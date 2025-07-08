@@ -2,17 +2,19 @@
 import BaseHead from "@components/BaseHead.astro";
 import { Header } from "@components/Header";
 
-const { title, metaDescription } = Astro.props;
+const { title, metaDescription, isHome } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={metaDescription} isHome={true} />
+    <BaseHead title={title} description={metaDescription} isHome={isHome} />
   </head>
   <body>
     <Header site={Astro.site} client:load />
 
-    <slot />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

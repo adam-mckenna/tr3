@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export const Header = ({ site }) => {
+type HeaderProps = {
+  site: string;
+};
+
+export const Header = ({ site }: HeaderProps) => {
   const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
 
   const handleOnMouseOver = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -16,7 +20,7 @@ export const Header = ({ site }) => {
         className={`fixed w-dvw h-dvh bg-black pointer-events-none transition-all ease-in-out ${isBackgroundVisible ? "opacity-50" : "opacity-0"}`}
       />
 
-      <header className="flex items-center p-6 md:px-0 w-full max-w-[1216px] mx-auto">
+      <header className="flex items-center p-4 md:p-6 w-full max-w-[1216px] mx-auto">
         <a
           href={site}
           className="relative justify-self-start z-10 focus:invert transition-all group"
@@ -37,10 +41,10 @@ export const Header = ({ site }) => {
 
         <nav className="flex-grow flex items-center justify-center">
           <ul>
-            <li className="flex gap-10">
+            <li className="flex gap-6 md:gap-10">
               <a href={site}>Home</a>
               <a href={site + "about"}>About</a>
-              <a href={site + "articles"}>Articles</a>
+              <a href={site}>Articles</a>
             </li>
           </ul>
         </nav>
@@ -49,7 +53,7 @@ export const Header = ({ site }) => {
           action="/search"
           method="GET"
           role="search"
-          className="relative flex items-center justify-between w-50 justify-self-end bg-[#F4F4F5] placeholder:text-[#A1A1AA] text-[#252621] rounded-[5px]"
+          className="relative hidden md:flex items-center justify-between w-50 justify-self-end bg-[#F4F4F5] placeholder:text-[#A1A1AA] text-[#252621] rounded-[5px]"
         >
           <label className="sr-only" htmlFor="search">
             Search the site
