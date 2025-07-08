@@ -1,0 +1,18 @@
+---
+import BaseHead from "@components/BaseHead.astro";
+import { Header } from "@components/Header";
+
+const { title, metaDescription } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={metaDescription} isHome={true} />
+  </head>
+  <body>
+    <Header site={Astro.site} client:load />
+
+    <slot />
+  </body>
+</html>

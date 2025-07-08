@@ -49,13 +49,23 @@ export const Header = ({ site }) => {
           action="/search"
           method="GET"
           role="search"
-          className="justify-self-end"
+          className="relative flex items-center justify-between w-50 justify-self-end bg-[#F4F4F5] placeholder:text-[#A1A1AA] text-[#252621] rounded-[5px]"
         >
           <label className="sr-only" htmlFor="search">
             Search the site
           </label>
-          <input type="search" id="search" name="q" placeholder="Search..." />
-          <button type="submit">Search</button>
+          <input
+            type="search"
+            className="w-full pl-4 pr-2 py-2 transition-all rounded focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+            name="query"
+            placeholder="Search..."
+          />
+          <button
+            className="cursor-pointer absolute flex items-center justify-center right-0 w-10 h-10 transition-all rounded focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+            type="submit"
+          >
+            <span className="icon-search" />
+          </button>
         </form>
       </header>
     </>
