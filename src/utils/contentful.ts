@@ -1,19 +1,19 @@
-import { createClient, EntryFieldTypes } from "contentful";
+import { createClient } from "contentful";
 
 export interface Article {
   contentTypeId: "article";
   fields: {
-    slug: EntryFieldTypes.Text;
-    title: EntryFieldTypes.Text;
-    metaDescription: EntryFieldTypes.Text;
-    publishedDate: EntryFieldTypes.Text;
-    category: EntryFieldTypes.Text;
+    slug: string;
+    title: string;
+    metaDescription: string;
+    publishedDate: string;
+    category: string;
     featuredImage: {
       fields: {
         file: {
-          url: EntryFieldTypes.Text;
+          url: string;
         };
-        description: EntryFieldTypes.Text;
+        description: string;
       };
     };
     body: Document;

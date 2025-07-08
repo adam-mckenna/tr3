@@ -1,103 +1,93 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
-import Header from "@components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="About Adam"
-      description="Hello, my name is Adam. I'm a passionate runner who builds websites for a living. I decided to put those two skills together to create this blog."
-    />
-  </head>
+<BaseLayout
+  title="About Adam"
+  description="Hello, my name is Adam. I'm a passionate runner who builds websites for a living. I decided to put those two skills together to create this blog."
+>
+  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
+    <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
+      Hello, my name is Adam.
+    </h1>
+    <p
+      class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[4px]"
+    >
+      I'm a passionate runner who builds websites for a living. I decided to put
+      those two skills together to create this blog.
+    </p>
 
-  <body class="bg-chardon">
-    <Header />
+    <div
+      class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-position-[50%_100%]"
+      style={{
+        backgroundImage: `url('/images/adam_mckenna_running.jpg')`,
+      }}
+    >
+    </div>
+    <p class="text-philippine-grey text-xs font-light mt-2">
+      At the&nbsp;
+      <a
+        class="text-sea-blue underline"
+        href="https://www.parkrun.org.uk/blythlinks/"
+        target="_blank">Blyth Links Parkrun</a
+      >.
+    </p>
+  </section>
 
-    <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-      <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
-        Hello, my name is Adam.
-      </h1>
-      <p
-        class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[4px]"
-      >
-        I'm a passionate runner who builds websites for a living. I decided to
-        put those two skills together to create this blog.
-      </p>
-
-      <div
-        class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-position-[50%_100%]"
-        style={{
-          backgroundImage: `url('/images/adam_mckenna_running.jpg')`,
-        }}
-      >
-      </div>
-      <p class="text-philippine-grey text-xs font-light mt-2">
-        At the&nbsp;
+  <section
+    class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-12 md:p-0 md:pb-8"
+  >
+    <div
+      class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
+    >
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        <span class="font-semibold">I started running in 2017.</span> Like most people
+        from North East England, my running journey began with the&nbsp;
         <a
           class="text-sea-blue underline"
-          href="https://www.parkrun.org.uk/blythlinks/"
-          target="_blank">Blyth Links Parkrun</a
+          href="https://www.greatrun.org/events/great-north-run/"
+          target="_blank"
+        >
+          Great North Run</a
         >.
       </p>
-    </section>
-
-    <section
-      class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-12 md:p-0 md:pb-8"
-    >
-      <div
-        class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
-      >
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          <span class="font-semibold">I started running in 2017.</span> Like most
-          people from North East England, my running journey began with the&nbsp;
-          <a
-            class="text-sea-blue underline"
-            href="https://www.greatrun.org/events/great-north-run/"
-            target="_blank"
-          >
-            Great North Run</a
-          >.
-        </p>
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          Fast-forward to 2020, the bordem of lockdown inspired a flurry of
-          running.
-        </p>
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          By 2025, I had{" "}
-          <span class="font-semibold"> ran marathons all over the world </span>
-          , from&nbsp;
-          <a
-            href="https://www.strava.com/activities/13018814997"
-            class="text-sea-blue underline"
-            target="_blank"
-          >
-            Thailand</a
-          >&nbsp;to&nbsp;
-          <a
-            href="https://www.strava.com/activities/10737248846"
-            class="text-sea-blue underline"
-            target="_blank"
-          >
-            New Zealand</a
-          >.
-        </p>
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          A "obligation" to run the local half-marathon has transformed into a
-          deep passion: I <i>love</i> running.
-        </p>
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          In particular, the{" "}
-          <span class="font-semibold">
-            science of running, nutrition and endurance
-          </span>{" "}
-          fascinates me.
-        </p>
-        <p class="text-elba leading-[1.6] tracking-[-.25px]">
-          This blog explores that fascination.
-        </p>
-      </div>
-    </section>
-  </body>
-</html>
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        Fast-forward to 2020, the bordem of lockdown inspired a flurry of
+        running.
+      </p>
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        By 2025, I had{" "}
+        <span class="font-semibold"> ran marathons all over the world </span>
+        , from&nbsp;
+        <a
+          href="https://www.strava.com/activities/13018814997"
+          class="text-sea-blue underline"
+          target="_blank"
+        >
+          Thailand</a
+        >&nbsp;to&nbsp;
+        <a
+          href="https://www.strava.com/activities/10737248846"
+          class="text-sea-blue underline"
+          target="_blank"
+        >
+          New Zealand</a
+        >.
+      </p>
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        A "obligation" to run the local half-marathon has transformed into a
+        deep passion: I <i>love</i> running.
+      </p>
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        In particular, the{" "}
+        <span class="font-semibold">
+          science of running, nutrition and endurance
+        </span>{" "}
+        fascinates me.
+      </p>
+      <p class="text-elba leading-[1.6] tracking-[-.25px]">
+        This blog explores that fascination.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

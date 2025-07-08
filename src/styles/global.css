@@ -2,6 +2,8 @@
 
 @import "tailwindcss";
 
+@import "./icons.css";
+
 @theme {
   --color-chardon: #f9f1e9;
   --color-elba: #252621;
@@ -14,4 +16,11 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }

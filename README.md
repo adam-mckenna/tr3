@@ -5,4 +5,5 @@
 We publish authentic, high-quality, science-backed content for recreational athletes who care about performance, not just participation.
 
 ## Tech
+
 The platform is built with [React](https://react.dev/), [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/) and [Contentful CMS](https://www.contentful.com/).

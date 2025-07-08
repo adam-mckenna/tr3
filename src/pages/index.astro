@@ -1,83 +1,69 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
-import Header from "@components/Header.astro";
-
 import { Article, contentfulClient } from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const { items } = await contentfulClient.getEntries<Article>({
   content_type: "article",
 });
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true} />
-  </head>
-  <body class="bg-chardon">
-    <Header />
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true}>
+  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-8">
+    <h1 class="sr-only">All Things Running.</h1>
+    <p
+      class="text-philippine-grey text-2xl leading-[30.5px] -tracking-[.5px] font-serif mb-[8px]"
+    >
+      exploring the art and science of optimal training, racing and recovery for
+      runners.
+    </p>
+  </section>
 
-    <main>
-      <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-8">
-        <h1 class="sr-only">All Things Running.</h1>
-        <p
-          class="text-philippine-grey text-2xl leading-[30.5px] -tracking-[.5px] font-serif mb-[8px]"
-        >
-          exploring the art and science of optimal training, racing and recovery
-          for runners.
-        </p>
-      </section>
+  <section
+    class="grid w-full max-w-128 mx-auto gap-6 px-6 mb-12 md:p-0 md:pt-6"
+  >
+    <h2 class="sr-only">latest articles</h2>
 
-      <section
-        class="grid w-full max-w-128 mx-auto gap-6 px-6 mb-12 md:p-0 md:pt-6"
-      >
-        <h2 class="sr-only">latest articles</h2>
+    {
+      items
+        .sort((a, b) => {
+          const d1 = new Date(a.fields.publishedDate);
+          const d2 = new Date(b.fields.publishedDate);
+          return d1 > d2 ? -1 : 1;
+        })
+        .map(({ fields }) => {
+          const { title, slug, category, metaDescription, publishedDate } =
+            fields;
 
-        {
-          items
-            .sort((a, b) => {
-              const d1 = new Date(a.fields.publishedDate);
-              const d2 = new Date(b.fields.publishedDate);
-              return d1 > d2 ? -1 : 1;
-            })
-            .map(({ fields }) => {
-              const { title, slug, category, metaDescription, publishedDate } =
-                fields;
+          return (
+            <article>
+              <p class="font-serif text-[12px] uppercase text-philippine-grey">
+                {category}
+              </p>
 
-              return (
-                <article>
-                  <p class="font-serif text-[12px] uppercase text-philippine-grey">
-                    {category}
-                  </p>
-
-                  <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
-                    <a href={new URL(`articles/${slug}`, Astro.site)}>
-                      {title}
-                    </a>
-                  </h3>
-                  <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
-                    {metaDescription}
-                  </p>
-                  <p class="flex items-center gap-1.5 font-[200] text-elba mt-[9px] text-sm">
-                    <span>{getFormattedDate(publishedDate)}</span>
-                    <span class="text-[8px]">|</span>
-                    <span>
-                      <a
-                        class="text-sea-blue font-medium hover:underline focus:underline"
-                        target="_blank"
-                        href="https://www.instagram.com/adamcantrun/"
-                      >
-                        Adam McKenna
-                      </a>
-                    </span>
-                  </p>
-                </article>
-              );
-            })
-        }
-      </section>
-    </main>
-  </body>
-</html>
+              <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
+                <a href={new URL(`articles/${slug}`, Astro.site)}>{title}</a>
+              </h3>
+              <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
+                {metaDescription}
+              </p>
+              <p class="flex items-center gap-1.5 font-[200] text-elba mt-[9px] text-sm">
+                <span>{getFormattedDate(publishedDate)}</span>
+                <span class="text-[8px]">|</span>
+                <span>
+                  <a
+                    class="text-sea-blue font-medium hover:underline focus:underline"
+                    target="_blank"
+                    href="https://www.instagram.com/adamcantrun/"
+                  >
+                    Adam McKenna
+                  </a>
+                </span>
+              </p>
+            </article>
+          );
+        })
+    }
+  </section>
+</BaseLayout>

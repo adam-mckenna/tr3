@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { SearchResults } from "../components/SearchResults";
+import { Article, contentfulClient } from "../utils/contentful";
+
+const { items } = await contentfulClient.getEntries<Article>({
+  content_type: "article",
+});
+---
+
+<BaseLayout>
+  <SearchResults items={items} client:only />
+</BaseLayout>
