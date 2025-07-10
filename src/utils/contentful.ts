@@ -5,6 +5,7 @@ export interface Author {
   fields: {
     slug: string;
     name: string;
+    role: string;
     bio: string;
     avatar?: {
       fields: {
