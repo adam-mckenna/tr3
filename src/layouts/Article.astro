@@ -1,78 +1,81 @@
 ---
 import { Disqus } from "astro-disqus";
 
-import BaseHead from "@components/BaseHead.astro";
-import { Header } from "@components/Header";
 import { RichTextRenderer } from "@components/RichTextRenderer";
 
 import { getFormattedDate } from "@utils/helpers";
 
-const { title, body, metaDescription, publishedDate, featuredImage } =
-  Astro.props;
+import BaseLayout from "./BaseLayout.astro";
+
+const {
+  title,
+  body,
+  metaDescription,
+  publishedDate,
+  featuredImage,
+  article_author,
+} = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={metaDescription} />
-  </head>
+<BaseLayout>
+  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
+    <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
+      {title}
+    </h1>
 
-  <body class="bg-chardon">
-    <Header site={Astro.site} client:load />
+    <p
+      class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]"
+    >
+      {metaDescription}
+    </p>
 
-    <main>
-      <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-        <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
-          {title}
-        </h1>
-        <p
-          class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]"
-        >
-          {metaDescription}
-        </p>
-        <p
-          class="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm"
-        >
-          <span>
-            {getFormattedDate(publishedDate)}
-          </span>
-          <span class="text-[8px]">//</span>
-          <span>
+    <p
+      class="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm"
+    >
+      <span>
+        {getFormattedDate(publishedDate)}
+      </span>
+      <span class="text-[8px]">//</span>
+      <span>
+        <!-- todo: handle multiple authors later -->
+        {
+          article_author.length === 1 ? (
             <a
               class="text-sea-blue underline font-medium"
-              target="_blank"
-              href="https://www.instagram.com/adamcantrun/"
+              href={`/authors/${article_author[0].fields.slug}`}
             >
-              Adam McKenna
+              {article_author[0].fields.name}
             </a>
-          </span>
-        </p>
+          ) : (
+            <div />
+          )
+        }
+      </span>
+    </p>
 
-        <div
-          class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${featuredImage.fields.file.url}')`,
-          }}
-        >
-        </div>
-        <p class="text-philippine-grey text-xs font-light mt-2">
-          {featuredImage.fields.description}
-        </p>
-      </section>
+    <div
+      class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-center"
+      style={{
+        backgroundImage: `url('${featuredImage.fields.file.url}')`,
+      }}
+    >
+    </div>
+    <p class="text-philippine-grey text-xs font-light mt-2">
+      {featuredImage.fields.description}
+    </p>
+  </section>
 
-      <section
-        class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-4 md:p-0"
-      >
-        <div
-          class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
-        >
-          <RichTextRenderer body={body} />
+  <section
+    class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-4 md:p-0"
+  >
+    <div
+      class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
+    >
+      <RichTextRenderer body={body} />
 
-          <hr class="border-t opacity-10 mt-4 border-philippine-grey" />
+      <hr class="border-t opacity-10 mt-4 border-philippine-grey" />
 
-          <Disqus embed="https://tr3.disqus.com/embed.js" />
-        </div>
-      </section>
-    </main>
-  </body>
-</html>
+      <Disqus embed="https://tr3.disqus.com/embed.js" />
+    </div>
+  </section>
+</BaseLayout>

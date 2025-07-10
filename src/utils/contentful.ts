@@ -1,5 +1,22 @@
 import { createClient } from "contentful";
 
+export interface Author {
+  contentTypeId: "author";
+  fields: {
+    slug: string;
+    name: string;
+    bio: string;
+    avatar?: {
+      fields: {
+        file: {
+          url: string;
+        };
+        description: string;
+      };
+    };
+  };
+}
+
 export interface Article {
   contentTypeId: "article";
   fields: {
@@ -7,7 +24,11 @@ export interface Article {
     title: string;
     metaDescription: string;
     publishedDate: string;
+    createdBy: string;
     category: string;
+    article_author?: {
+      fields: Author["fields"];
+    };
     featuredImage: {
       fields: {
         file: {

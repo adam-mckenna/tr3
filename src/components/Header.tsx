@@ -20,10 +20,10 @@ export const Header = ({ site }: HeaderProps) => {
         className={`fixed w-dvw h-dvh bg-black pointer-events-none transition-all ease-in-out ${isBackgroundVisible ? "opacity-50" : "opacity-0"}`}
       />
 
-      <header className="flex items-center p-4 md:p-6 w-full max-w-[1216px] mx-auto">
+      <header className="flex min-h-[120px] relative items-center p-4 md:py-6 md:px-4 lg:px-0 w-full max-w-[1216px] mx-auto">
         <a
           href={site}
-          className="relative justify-self-start z-10 focus:invert transition-all group"
+          className="absolute justify-self-start z-10 focus:invert transition-all group"
           onMouseOver={handleOnMouseOver}
           onMouseLeave={handleOnMouseLeave}
         >
@@ -39,7 +39,7 @@ export const Header = ({ site }: HeaderProps) => {
           />
         </a>
 
-        <nav className="flex-grow flex items-center justify-center">
+        <nav className="flex-grow flex items-center justify-end md:justify-center">
           <ul>
             <li className="flex gap-6 md:gap-10">
               <a href={site}>Home</a>
@@ -53,7 +53,7 @@ export const Header = ({ site }: HeaderProps) => {
           action="/search"
           method="GET"
           role="search"
-          className="relative hidden md:flex items-center justify-between w-50 justify-self-end bg-[#F4F4F5] placeholder:text-[#A1A1AA] text-[#252621] rounded-[5px]"
+          className="absolute right-4 lg:right-0 hidden md:flex items-center justify-between w-50 justify-self-end bg-[#F4F4F5] placeholder:text-[#A1A1AA] text-[#252621] rounded-[5px]"
         >
           <label className="sr-only" htmlFor="search">
             Search the site
