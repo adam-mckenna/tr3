@@ -9,6 +9,6 @@ const { items } = await contentfulClient.getEntries<Article>({
 });
 ---
 
-<BaseLayout>
+<BaseLayout title="Search">
   <SearchResults items={items} client:only />
 </BaseLayout>

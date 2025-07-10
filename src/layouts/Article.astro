@@ -17,7 +17,7 @@ const {
 } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={metaDescription}>
   <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
     <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
       {title}
