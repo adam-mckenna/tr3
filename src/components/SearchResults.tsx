@@ -60,8 +60,7 @@ export const SearchResults = ({ items }: SearchResultsProps) => {
                   <span>
                     <a
                       className="text-sea-blue font-medium hover:underline focus:underline"
-                      target="_blank"
-                      href="https://www.instagram.com/adamcantrun/"
+                      href="/authors/adam-mckenna"
                     >
                       Adam McKenna
                     </a>

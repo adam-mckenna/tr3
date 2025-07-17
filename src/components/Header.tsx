@@ -20,7 +20,7 @@ export const Header = ({ site }: HeaderProps) => {
         className={`fixed w-dvw h-dvh bg-black pointer-events-none transition-all ease-in-out ${isBackgroundVisible ? "opacity-50" : "opacity-0"}`}
       />
 
-      <header className="flex min-h-[120px] relative items-center p-4 md:py-6 md:px-4 lg:px-0 w-full max-w-[1216px] mx-auto">
+      <header className="flex min-h-[120px] relative items-center p-4 md:py-6 md:px-4 lg:px-0 w-full max-w-lg mx-auto">
         <a
           href={site}
           className="absolute justify-self-start z-10 focus:invert transition-all group"
@@ -43,8 +43,8 @@ export const Header = ({ site }: HeaderProps) => {
           <ul>
             <li className="flex gap-6 md:gap-10">
               <a href={site}>Home</a>
-              <a href={site + "about"}>About</a>
               <a href={site}>Articles</a>
+              <a href={`${site}about`}>About</a>
             </li>
           </ul>
         </nav>
