@@ -4,66 +4,120 @@ import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const { items } = await contentfulClient.getEntries<Article>({
+const data = await contentfulClient.getEntries<Article>({
   content_type: "article",
 });
+let articles = (data.items as Array<Article>).sort((a, b) => {
+  const d1 = new Date(a.fields.publishedDate);
+  const d2 = new Date(b.fields.publishedDate);
+  return d1 > d2 ? -1 : 1;
+});
+const featuredArticle = articles.shift();
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true}>
-  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-8">
-    <h1 class="sr-only">All Things Running.</h1>
-    <p
-      class="text-philippine-grey text-2xl leading-[30.5px] -tracking-[.5px] font-serif mb-[8px]"
+  <section aria-label="featured article" class="w-full gap-6">
+    <a
+      class="group"
+      href={`${Astro.site}articles/${featuredArticle.fields.slug}`}
+      aria-label={featuredArticle.fields.title}
     >
-      exploring the art and science of optimal training, racing and recovery for
-      runners.
-    </p>
+      <article
+        class="relative h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:scale-102 group-hover:scale-102"
+        style={{
+          backgroundImage: `url('${featuredArticle.fields.featuredImage.fields.file.url}')`,
+        }}
+      >
+        <div class="absolute w-full h-full bg-[#141624]/40"></div>
+
+        <div class="relative z-10 p-6 md:py-14 md:px-12 grid gap-4">
+          <p
+            class="bg-white py-1 uppercase text-xs font-extrabold text-[#252621] px-2 w-fit"
+          >
+            {featuredArticle.fields.category}
+          </p>
+
+          <div class="flex items-center gap-4 text-white font-serif w-max">
+            <span
+              class="rounded-full inline-block bg-cover bg-center w-12 h-12"
+              style={{
+                backgroundImage: `url('${featuredArticle.fields.article_author[0].fields.avatar.fields.file.url}')`,
+              }}></span>
+            <p class="font-semibold">
+              {featuredArticle.fields.article_author[0].fields.name}
+            </p>
+            <span class="bg-white w-1 h-1 rounded-full"></span>
+            <p>{getFormattedDate(featuredArticle.fields.publishedDate)}</p>
+          </div>
+          <h2 class="font-extrabold text-4xl text-white max-w-[500px]">
+            <span class="sr-only">Featured article:</span>
+            {featuredArticle.fields.title}
+          </h2>
+        </div>
+      </article></a
+    >
   </section>
 
   <section
-    class="grid w-full max-w-128 mx-auto gap-6 px-6 mb-12 md:p-0 md:pt-6"
+    class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+    aria-label="latest articles"
   >
-    <h2 class="sr-only">latest articles</h2>
+    <header
+      class="md:col-span-2 lg:col-span-3 flex flex-wrap justify-between mt-8"
+    >
+      <h2 class="text-lg font-semibold">Latest articles</h2>
+      <hr class="w-fit border" />
+      <!-- <button> View all </button> -->
+    </header>
 
     {
-      items
-        .sort((a, b) => {
-          const d1 = new Date(a.fields.publishedDate);
-          const d2 = new Date(b.fields.publishedDate);
-          return d1 > d2 ? -1 : 1;
-        })
-        .map(({ fields }) => {
-          const { title, slug, category, metaDescription, publishedDate } =
-            fields;
+      articles.map(({ fields }) => {
+        const {
+          title,
+          slug,
+          category,
+          metaDescription,
+          publishedDate,
+          article_author,
+          featuredImage,
+        } = fields;
 
-          return (
-            <article>
-              <p class="font-serif text-[12px] uppercase text-philippine-grey">
+        const author = article_author[0].fields;
+
+        return (
+          <article>
+            <div
+              class="h-[300px] bg-cover bg-center mb-4 p-4"
+              style={{
+                backgroundImage: `url('${featuredImage.fields.file.url}')`,
+              }}
+            >
+              <p class="bg-white py-1 uppercase text-xs font-extrabold text-[#252621] px-2 w-fit">
                 {category}
               </p>
+            </div>
 
-              <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
-                <a href={new URL(`articles/${slug}`, Astro.site)}>{title}</a>
-              </h3>
-              <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
-                {metaDescription}
-              </p>
-              <p class="flex items-center gap-1.5 font-[200] text-elba mt-[9px] text-sm">
-                <span>{getFormattedDate(publishedDate)}</span>
-                <span class="text-[8px]">|</span>
-                <span>
-                  <a
-                    class="text-sea-blue font-medium hover:underline focus:underline"
-                    target="_blank"
-                    href="https://www.instagram.com/adamcantrun/"
-                  >
-                    Adam McKenna
-                  </a>
-                </span>
-              </p>
-            </article>
-          );
-        })
+            <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
+              <a href={new URL(`articles/${slug}`, Astro.site)}>{title}</a>
+            </h3>
+            <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
+              {metaDescription}
+            </p>
+            <p class="flex items-center gap-1.5 font-[200] text-elba mt-[9px] text-sm">
+              <span>{getFormattedDate(publishedDate)}</span>
+              <span class="text-[8px]">|</span>
+              <span>
+                <a
+                  class="text-sea-blue font-medium hover:underline focus:underline"
+                  href={`${Astro.site}authors/${author.slug}`}
+                >
+                  Adam McKenna
+                </a>
+              </span>
+            </p>
+          </article>
+        );
+      })
     }
   </section>
 </BaseLayout>
