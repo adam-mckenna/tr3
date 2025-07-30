@@ -6,3 +6,12 @@
   mask-position: center;
   mask-size: contain;
 }
+
+.icon-close {
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("/images/icons/close.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
