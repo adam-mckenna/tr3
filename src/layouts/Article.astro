@@ -4,8 +4,9 @@ import { Disqus } from "astro-disqus";
 import { RichTextRenderer } from "@components/RichTextRenderer";
 
 import { getFormattedDate } from "@utils/helpers";
+import { Article } from "@utils/contentful";
 
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const {
   title,
