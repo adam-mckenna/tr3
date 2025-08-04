@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 
 import { FocusTrap } from "focus-trap-react";
 import { Article } from "@utils/contentful";
@@ -15,6 +15,19 @@ export const Header = ({ site, articles }: HeaderProps) => {
   const [isSearchFormVisible, setIsSearchFormVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredArticles, setFilteredArticles] = useState<Array<Article>>([]);
+
+  const closeSearchForm = ({ key }: any) => {
+    if (isSearchFormVisible && key === "Escape") {
+      setIsSearchFormVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", closeSearchForm);
+    return () => {
+      window.removeEventListener("keydown", closeSearchForm);
+    };
+  }, [closeSearchForm]);
 
   const handleOnCloseSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
@@ -45,7 +58,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
     <header className="relative flex p-4 gap-6 max-w-lg mx-auto xl:p-0 xl:pt-6 xl:pb-2">
       <a
         href={site}
-        className="relative items-center w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all group focus:online-none focus:ring-0"
+        className="relative items-center min-w-12 w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all group focus:online-none focus:ring-0"
       >
         <img
           src="/tr3-logo.svg"
@@ -55,7 +68,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
         <img
           src="/tr3-logo-inverted.svg"
           alt=""
-          className="absolute top-0 w-12 h-12 md:w-14 md:h-14 transition-[opacity] opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus:ring-2 group-focus:ring-[#252621] group-focus:ring-offset-2 group-focus:rounded"
+          className="absolute top-0 w-12 h-12 md:w-14 md:h-14 transition-[opacity] opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2"
         />
       </a>
 
@@ -63,10 +76,10 @@ export const Header = ({ site, articles }: HeaderProps) => {
         aria-label="Mobile navigation with featured links"
         className="flex flex-grow items-center justify-center"
       >
-        <ul className="flex gap-5 md:gap-6 lg:gap-12">
+        <ul className="flex gap-2 md:gap-3 lg:gap-6">
           <li>
             <a
-              className="cursor-pointer py-1 rounded transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={site}
             >
               Home
@@ -74,7 +87,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           </li>
           <li>
             <a
-              className="cursor-pointer py-1 rounded transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={site}
             >
               Articles
@@ -82,7 +95,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           </li>
           <li>
             <a
-              className="cursor-pointer py-1 rounded transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={`${site}about`}
             >
               About
@@ -93,7 +106,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
 
       <FocusTrap active={isSearchFormVisible}>
         <div
-          className={`fixed flex flex-wrap content-start justify-center gap-2 z-100 bg-[#252621]/90 h-dvh w-dvw left-0 top-0 p-8 pt-14 md:pt-32 transition-all ${isSearchFormVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          className={`fixed flex flex-wrap content-start justify-center gap-2 z-100 bg-elba/90 h-dvh w-dvw left-0 top-0 p-8 pt-14 md:pt-32 transition-all ${isSearchFormVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         >
           <button
             tabIndex={isSearchFormVisible ? 0 : -1}
@@ -103,7 +116,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
                 handleOnCloseSearch(e);
               }
             }}
-            className="absolute top-4 right-4 flex items-center cursor-pointer justify-center h-8 w-8 transition-all rounded opacity-75 focus:opacity-100 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+            className="absolute top-4 right-4 flex items-center cursor-pointer justify-center h-8 w-8 transition-all opacity-75 focus:opacity-100 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
           >
             <span className="icon-close text-white w-4 h-4" />
           </button>
@@ -116,6 +129,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
               autoFocus={isSearchFormVisible}
               tabIndex={isSearchFormVisible ? 0 : -1}
               value={searchQuery}
+              autoComplete="off"
               onChange={({ target }) => setSearchQuery(target.value)}
               placeholder="Search..."
               className="border-b-2 border-[#F4F4F5]/50 py-4 h-12 w-full transition-all text-[#F4F4F5] placeholder-[#F4F4F5]  focus:border-[#F4F4F5] focus:outline-none focus:border-b-4"
@@ -129,7 +143,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
                       tabIndex={isSearchFormVisible ? 0 : -1}
                       href={`${site}articles/${article.fields.slug}`}
                       key={article.fields.slug}
-                      className="block text-white py-2 border-b border-gray-600 transition-all focus:rounded focus:px-2 focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2"
+                      className="block text-white py-2 border-b border-gray-600 transition-all hover:px-2 focus:px-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                     >
                       {article.fields.title}
                     </a>
@@ -156,9 +170,9 @@ export const Header = ({ site, articles }: HeaderProps) => {
             }
           }
         }}
-        className="grid items-center content-center justify-center cursor-pointer gap-1.5 w-12 h-12 md:w-14 md:h-14 group bg-[#252621] transition-all hover:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#252621] focus:ring-offset-2 focus:rounded"
+        className="grid items-center content-center justify-center cursor-pointer gap-1.5 min-w-12 w-12 h-12 md:w-14 md:h-14 group bg-elba transition-all hover:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
       >
-        <span className="icon-search w-4 h-4 md:w-6 md:h-6 text-white transition-all group-hover:text-[#252621] group-focus:text-[#252621]" />
+        <span className="icon-search w-4 h-4 md:w-6 md:h-6 text-white transition-all group-hover:text-elba group-focus:text-elba" />
       </button>
     </header>
   );

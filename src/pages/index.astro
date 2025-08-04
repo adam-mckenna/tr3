@@ -23,7 +23,7 @@ const featuredArticle = articles.shift();
       aria-label={featuredArticle.fields.title}
     >
       <article
-        class="relative h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:scale-102 group-hover:scale-102"
+        class="relative h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
         style={{
           backgroundImage: `url('${featuredArticle.fields.featuredImage.fields.file.url}')`,
         }}
@@ -32,7 +32,7 @@ const featuredArticle = articles.shift();
 
         <div class="relative z-10 p-6 md:py-14 md:px-12 grid gap-4">
           <p
-            class="bg-white py-1 uppercase text-xs font-extrabold text-[#252621] px-2 w-fit"
+            class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit"
           >
             {featuredArticle.fields.category}
           </p>
@@ -92,7 +92,7 @@ const featuredArticle = articles.shift();
                 backgroundImage: `url('${featuredImage.fields.file.url}')`,
               }}
             >
-              <p class="bg-white py-1 uppercase text-xs font-extrabold text-[#252621] px-2 w-fit">
+              <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
                 {category}
               </p>
             </div>
