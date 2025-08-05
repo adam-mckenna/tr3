@@ -23,7 +23,7 @@ const featuredArticle = articles.shift();
       aria-label={featuredArticle.fields.title}
     >
       <article
-        class="relative h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
+        class="relative h-[400px] md:h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
         style={{
           backgroundImage: `url('${featuredArticle.fields.featuredImage.fields.file.url}')`,
         }}
@@ -37,19 +37,26 @@ const featuredArticle = articles.shift();
             {featuredArticle.fields.category}
           </p>
 
-          <div class="flex items-center gap-4 text-white font-serif w-max">
+          <div
+            class="flex items-center gap-2 md:gap-2.5 text-white font-serif w-max"
+          >
             <span
-              class="rounded-full inline-block bg-cover bg-center w-12 h-12"
+              class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-white"
               style={{
                 backgroundImage: `url('${featuredArticle.fields.article_author[0].fields.avatar.fields.file.url}')`,
               }}></span>
-            <p class="font-semibold">
+            <p class="text-sm font-semibold md:text-base">
               {featuredArticle.fields.article_author[0].fields.name}
             </p>
             <span class="bg-white w-1 h-1 rounded-full"></span>
-            <p>{getFormattedDate(featuredArticle.fields.publishedDate)}</p>
+            <p class="text-sm md:text-base">
+              {getFormattedDate(featuredArticle.fields.publishedDate)}
+            </p>
           </div>
-          <h2 class="font-extrabold text-4xl text-white max-w-[500px]">
+
+          <h2
+            class="font-extrabold text-2xl md:text-4xl text-white max-w-[500px]"
+          >
             <span class="sr-only">Featured article:</span>
             {featuredArticle.fields.title}
           </h2>
@@ -58,66 +65,77 @@ const featuredArticle = articles.shift();
     >
   </section>
 
-  <section
-    class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-    aria-label="latest articles"
-  >
-    <header
-      class="md:col-span-2 lg:col-span-3 flex flex-wrap justify-between mt-8"
-    >
+  <section class="grid gap-6" aria-label="latest articles">
+    <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
+      <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
       <h2 class="text-lg font-semibold">Latest articles</h2>
-      <hr class="w-fit border" />
-      <!-- <button> View all </button> -->
+      <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
     </header>
 
-    {
-      articles.map(({ fields }) => {
-        const {
-          title,
-          slug,
-          category,
-          metaDescription,
-          publishedDate,
-          article_author,
-          featuredImage,
-        } = fields;
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        articles.map(({ fields }) => {
+          const {
+            title,
+            slug,
+            category,
+            publishedDate,
+            metaDescription,
+            article_author,
+            featuredImage,
+          } = fields;
 
-        const author = article_author[0].fields;
+          const author = article_author[0].fields;
 
-        return (
-          <article>
-            <div
-              class="h-[300px] bg-cover bg-center mb-4 p-4"
-              style={{
-                backgroundImage: `url('${featuredImage.fields.file.url}')`,
-              }}
-            >
-              <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
-                {category}
-              </p>
-            </div>
+          return (
+            <article class="grid">
+              <div
+                class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                style={{
+                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                }}
+              >
+                <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
+                  {category}
+                </p>
+              </div>
 
-            <h3 class="font-bold text-elba text-xl mt-[4px] -tracking-[.8px] hover:underline focus:underline">
-              <a href={new URL(`articles/${slug}`, Astro.site)}>{title}</a>
-            </h3>
-            <p class="text-elba font-light -tracking-[.5px] leading-[25px] mt-[5px]">
-              {metaDescription}
-            </p>
-            <p class="flex items-center gap-1.5 font-[200] text-elba mt-[9px] text-sm">
-              <span>{getFormattedDate(publishedDate)}</span>
-              <span class="text-[8px]">|</span>
-              <span>
+              <h3 class="font-bold text-elba text-xl -tracking-[.8px] hover:underline focus:underline">
                 <a
-                  class="text-sea-blue font-medium hover:underline focus:underline"
-                  href={`${Astro.site}authors/${author.slug}`}
+                  class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                  href={new URL(`articles/${slug}`, Astro.site)}
                 >
-                  Adam McKenna
+                  {title}
                 </a>
-              </span>
-            </p>
-          </article>
-        );
-      })
-    }
+              </h3>
+              <p class="text-philippine-grey font-light -tracking-[.5px] leading-[25px] mt-[5px] mb-2">
+                {metaDescription}
+              </p>
+
+              <div class="flex items-center gap-2 md:gap-2.5 text-elba font-serif w-max">
+                <span
+                  class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-elba"
+                  style={{
+                    backgroundImage: `url('${author.avatar.fields.file.url}')`,
+                  }}
+                />
+                <p class="text-sm font-semibold md:text-base">
+                  <a
+                    class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                    href={new URL(`authors/${author.slug}`, Astro.site)}
+                  >
+                    {author.name}
+                  </a>
+                </p>
+                <span class="bg-elba w-1 h-1 rounded-full" />
+                <p class="text-sm md:text-base">
+                  {getFormattedDate(publishedDate)}
+                </p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
   </section>
 </BaseLayout>

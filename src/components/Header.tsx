@@ -55,7 +55,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
   }, [searchQuery]);
 
   return (
-    <header className="relative flex p-4 gap-6 max-w-lg mx-auto xl:p-0 xl:pt-6 xl:pb-2">
+    <header className="relative flex p-4 max-w-lg mx-auto xl:p-0 xl:pt-6 xl:pb-2">
       <a
         href={site}
         className="relative items-center min-w-12 w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all group focus:online-none focus:ring-0"

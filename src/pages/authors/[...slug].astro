@@ -20,7 +20,7 @@ const { name, role, bio, avatar } = Astro.props;
 
 <BaseLayout title={`${name} - Author`} metaDescription={bio}>
   <header
-    class="w-full gap-4 p-6 max-w-lg mx-auto bg-elba flex flex-wrap items-center content-center justify-center h-80"
+    class="w-full gap-4 p-6 max-w-lg mx-auto bg-elba flex flex-wrap items-center content-center justify-center min-h-80"
   >
     <div class="flex items-center gap-2 w-full justify-center">
       <div
@@ -40,7 +40,7 @@ const { name, role, bio, avatar } = Astro.props;
       </div>
     </div>
 
-    <p class="text-[#CCCCCC] text-lg font-serif text-center max-w-1/2">
+    <p class="text-[#CCCCCC] text-lg font-serif text-center md:max-w-1/2">
       {bio}
     </p>
   </header>
