@@ -61,12 +61,12 @@ export const Header = ({ site, articles }: HeaderProps) => {
         className="relative items-center min-w-12 w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all group focus:online-none focus:ring-0"
       >
         <img
-          src="/tr3-logo.svg"
+          src="/images/tr3-logo.svg"
           alt="tr3: train, race, recover, repeat."
           className="w-12 h-12 md:w-14 md:h-14 transition-[opacity] group-focus:opacity-0 group-hover:opacity-0"
         />
         <img
-          src="/tr3-logo-inverted.svg"
+          src="/imaes/tr3-logo-inverted.svg"
           alt=""
           className="absolute top-0 w-12 h-12 md:w-14 md:h-14 transition-[opacity] opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2"
         />
