@@ -66,7 +66,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           className="w-12 h-12 md:w-14 md:h-14 transition-[opacity] group-focus:opacity-0 group-hover:opacity-0"
         />
         <img
-          src="/imaes/tr3-logo-inverted.svg"
+          src="/images/tr3-logo-inverted.svg"
           alt=""
           className="absolute top-0 w-12 h-12 md:w-14 md:h-14 transition-[opacity] opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2"
         />
