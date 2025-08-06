@@ -88,7 +88,7 @@ const featuredArticle = articles.shift();
           const author = article_author[0].fields;
 
           return (
-            <article class="grid">
+            <article class="grid gap-1 content-start">
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
@@ -112,9 +112,9 @@ const featuredArticle = articles.shift();
                 {metaDescription}
               </p>
 
-              <div class="flex items-center gap-2 md:gap-2.5 text-elba font-serif w-max">
+              <div class="flex items-center mt-1 gap-2 md:gap-2.5 text-elba font-serif w-max">
                 <span
-                  class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-elba"
+                  class="rounded-full inline-block bg-cover bg-center w-8 h-8 border-2 border-elba"
                   style={{
                     backgroundImage: `url('${author.avatar.fields.file.url}')`,
                   }}
