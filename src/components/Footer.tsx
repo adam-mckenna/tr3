@@ -55,7 +55,7 @@ export const Footer = () => (
         <ul className="grid gap-2 w-full">
           <li>
             <a
-              href="/"
+              href="/terms-and-conditions"
               className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Terms and Conditions
@@ -63,7 +63,7 @@ export const Footer = () => (
           </li>
           <li>
             <a
-              href="/"
+              href="/privacy-policy"
               className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Privacy Policy
