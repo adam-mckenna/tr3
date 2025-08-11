@@ -1,7 +1,7 @@
 .icon-search {
   display: inline-block;
   background-color: currentColor;
-  mask-image: url("/images/icons/search.svg");
+  mask-image: url("/images/icons/icon-search.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -10,7 +10,34 @@
 .icon-close {
   display: inline-block;
   background-color: currentColor;
-  mask-image: url("/images/icons/close.svg");
+  mask-image: url("/images/icons/icon-close.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon-facebook {
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("/images/icons/icon-facebook.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon-youtube {
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("/images/icons/icon-instagram.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon-instagram {
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("/images/icons/icon-youtube.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
