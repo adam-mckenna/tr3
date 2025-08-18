@@ -88,7 +88,7 @@ const featuredArticle = articles.shift();
           const author = article_author[0].fields;
 
           return (
-            <article class="grid gap-1 content-start">
+            <article class="grid gap-0.5 content-start">
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
@@ -100,7 +100,7 @@ const featuredArticle = articles.shift();
                 </p>
               </div>
 
-              <h3 class="font-bold text-elba text-xl -tracking-[.8px] hover:underline focus:underline">
+              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
                 <a
                   class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                   href={new URL(`articles/${slug}`, Astro.site)}
@@ -108,29 +108,27 @@ const featuredArticle = articles.shift();
                   {title}
                 </a>
               </h3>
-              <p class="text-philippine-grey font-light -tracking-[.5px] leading-[25px] mt-[5px] mb-2">
+              <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
                 {metaDescription}
               </p>
 
-              <div class="flex items-center mt-1 gap-2 md:gap-2.5 text-elba font-serif w-max">
+              <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
                 <span
-                  class="rounded-full inline-block bg-cover bg-center w-8 h-8 border-2 border-elba"
+                  class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
                   style={{
                     backgroundImage: `url('${author.avatar.fields.file.url}')`,
                   }}
                 />
-                <p class="text-sm font-semibold md:text-base">
+                <p class="text-sm font-semibold">
                   <a
-                    class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                    class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                     href={new URL(`authors/${author.slug}`, Astro.site)}
                   >
                     {author.name}
                   </a>
                 </p>
-                <span class="bg-elba w-1 h-1 rounded-full" />
-                <p class="text-sm md:text-base">
-                  {getFormattedDate(publishedDate)}
-                </p>
+                <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
+                <p class="text-sm">{getFormattedDate(publishedDate)}</p>
               </div>
             </article>
           );

@@ -78,17 +78,20 @@ export const Footer = () => (
         </h2>
 
         <ul className="flex gap-3 mx-auto md:mx-0">
-          <li>
+          {/* todo: facebook page? */}
+          {/* <li>
             <a
               href="/"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-facebook block bg-[#3B3C4A] w-4 h-4" />
             </a>
-          </li>
+          </li> */}
           <li>
             <a
-              href="/"
+              href="https://www.youtube.com/@tr3running"
+              target="_blank"
+              aria-label="TR3 YouTube channel"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-youtube block bg-[#3B3C4A] w-4 h-4" />
@@ -96,7 +99,9 @@ export const Footer = () => (
           </li>
           <li>
             <a
-              href="/"
+              href="https://www.instagram.com/adamcantrun/"
+              target="_blank"
+              aria-label="adamcantrun instagram"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-instagram block bg-[#3B3C4A] w-4 h-4" />

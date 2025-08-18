@@ -15,62 +15,67 @@ const {
   publishedDate,
   featuredImage,
   article_author,
+  category,
 } = Astro.props;
+console.log(article_author);
 ---
 
 <BaseLayout title={title} description={metaDescription}>
-  <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-    <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
-      {title}
-    </h1>
+  <section
+    class="w-100vw pt-4 md:p-0 md:pt-12 lg:pt-12 lg:px-6 lg:py-8 lg:bg-chardon lg:mx-[calc((1216px-100vw)/2)]"
+  >
+    <div class="max-w-[620px] mx-auto">
+      <p
+        class="bg-elba py-1 uppercase mb-3 text-xs font-extrabold text-white px-2 w-fit"
+      >
+        {category}
+      </p>
 
-    <p
-      class="text-philippine-grey text-xl leading-[27.5px] -tracking-[.5px] font-serif mt-[6px]"
-    >
-      {metaDescription}
-    </p>
+      <h1 class="font-[700] text-3xl text-elba -tracking-[1.25px]">
+        {title}
+      </h1>
 
-    <p
-      class="text-philippine-grey flex items-center gap-1.5 font-[300] mt-[9px] text-sm"
-    >
-      <span>
-        {getFormattedDate(publishedDate)}
-      </span>
-      <span class="text-[8px]">//</span>
-      <span>
-        <!-- todo: handle multiple authors later -->
-        {
-          article_author.length === 1 ? (
-            <a
-              class="text-sea-blue underline font-medium"
-              href={`/authors/${article_author[0].fields.slug}`}
-            >
-              {article_author[0].fields.name}
-            </a>
-          ) : (
-            <div />
-          )
-        }
-      </span>
-    </p>
+      <p
+        class="text-philippine-grey text-lg leading-[25px] -tracking-[.8x] font-serif mt-[6px] mb-4"
+      >
+        {metaDescription}
+      </p>
 
-    <div
-      class="w-full h-[300px] bg-philippine-grey z-20 relative rounded mt-4 bg-cover bg-center"
-      style={{
-        backgroundImage: `url('${featuredImage.fields.file.url}')`,
-      }}
-    >
+      <div
+        class="flex items-center gap-1 md:gap-2 text-elba font-serif w-max mb-8"
+      >
+        <span
+          class="rounded-full inline-block bg-cover bg-center w-6 h-6 md:w-8 md:h-8 mr-1 border-2 border-elba"
+          style={{
+            backgroundImage: `url('${article_author[0].fields.avatar.fields.file.url}')`,
+          }}></span>
+        <p class="text-sm font-semibold md:text-base">
+          {article_author[0].fields.name}
+        </p>
+        <span class="bg-elba w-1 h-1 rounded-full"></span>
+        <p class="text-sm md:text-base">
+          {getFormattedDate(publishedDate)}
+        </p>
+      </div>
+
+      <div
+        class="w-full h-[300px] bg-philippine-grey z-20 relative mt-4 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('${featuredImage.fields.file.url}')`,
+        }}
+      >
+      </div>
+      <p class="text-philippine-grey text-xs font-light mt-2">
+        {featuredImage.fields.description}
+      </p>
     </div>
-    <p class="text-philippine-grey text-xs font-light mt-2">
-      {featuredImage.fields.description}
-    </p>
   </section>
 
   <section
-    class="bg-white w-full min-h-[400px] -mt-[150px] px-6 pt-8 pb-4 md:p-0"
+    class="bg-white min-h-[400px] -mt-[150px] pt-12 lg:px-6 lg:pt-8 pb-4 md:p-0 w-100vw lg:mx-[calc((1216px-100vw)/2)]"
   >
     <div
-      class="grid gap-4 w-full max-w-128 mx-auto pt-32 md:pt-[172px] md:pb-8"
+      class="grid gap-4 w-full max-w-[620px] mx-auto pt-32 md:pt-[172px] md:pb-8 lg:pt-[112px]"
     >
       <RichTextRenderer body={body} />
 
