@@ -6,10 +6,10 @@ export const Footer = () => (
       <section className="md:col-span-4 grid gap-2">
         <h2 className="text-[#181A2A] font-semibold text-lg">About</h2>
 
-        <p className="text-[#696A75] font-serif max-w-[289px]">
+        <p className="text-[#696A75] font-serif max-w-[289px] max-md:mx-auto">
           tr3 is a platform created for serious runners, by serious runners.
         </p>
-        <p className="text-[#696A75] font-serif max-w-[289px]">
+        <p className="text-[#696A75] font-serif max-w-[289px] max-md:mx-auto">
           We publish authentic, high-quality, science-backed content for
           recreational athletes who care about performance, not just
           participation.

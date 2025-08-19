@@ -17,7 +17,8 @@ const {
   article_author,
   category,
 } = Astro.props;
-console.log(article_author);
+
+const author = article_author[0].fields;
 ---
 
 <BaseLayout title={title} description={metaDescription}>
@@ -47,10 +48,15 @@ console.log(article_author);
         <span
           class="rounded-full inline-block bg-cover bg-center w-6 h-6 md:w-8 md:h-8 mr-1 border-2 border-elba"
           style={{
-            backgroundImage: `url('${article_author[0].fields.avatar.fields.file.url}')`,
+            backgroundImage: `url('${author.avatar.fields.file.url}')`,
           }}></span>
-        <p class="text-sm font-semibold md:text-base">
-          {article_author[0].fields.name}
+        <p class="font-semibold">
+          <a
+            class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            href={new URL(`authors/${author.slug}`, Astro.site)}
+          >
+            {author.name}
+          </a>
         </p>
         <span class="bg-elba w-1 h-1 rounded-full"></span>
         <p class="text-sm md:text-base">

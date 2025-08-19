@@ -31,7 +31,7 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
         </h3>
       ),
       [BLOCKS.QUOTE]: (_node, children) => (
-        <blockquote className="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800 italic">
+        <blockquote className="p-4 border-s-4 border-gray-300 bg-gray-50 italic">
           {children}
         </blockquote>
       ),
@@ -46,11 +46,28 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
         <a
           href={node.data.uri}
           target="_blank"
-          className="text-sea-blue underline"
+          className="text-sea-blue hover:text-[#044862] focus:text-[#044862] underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
           rel="noopener noreferrer"
         >
           {children}
         </a>
+      ),
+      [BLOCKS.TABLE]: (_node, children) => (
+        <table className="border border-neutral-200">{children}</table>
+      ),
+      [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => (
+        <th className="px-4 py-2.5 bg-neutral-100 text-left border-b border-neutral-200">
+          {children}
+        </th>
+      ),
+      [BLOCKS.TABLE_ROW]: (_node, children) => (
+        <tr className="odd:bg-neutral-50">{children}</tr>
+      ),
+      [BLOCKS.TABLE_CELL]: (_node, children) => (
+        <td className="px-4 py-2.5">{children}</td>
+      ),
+      [BLOCKS.HR]: (_node) => (
+        <hr className="border-b border-t-0 my-2 border-neutral-200" />
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = node.data.target as {
@@ -83,5 +100,5 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
     },
   };
 
-  return <>{documentToReactComponents(body, options)}</>;
+  return documentToReactComponents(body, options);
 };
