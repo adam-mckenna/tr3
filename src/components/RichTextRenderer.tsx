@@ -53,7 +53,9 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
         </a>
       ),
       [BLOCKS.TABLE]: (_node, children) => (
-        <table className="border border-neutral-200">{children}</table>
+        <div className="overflow-scroll max-w-full border border-neutral-200">
+          <table>{children}</table>
+        </div>
       ),
       [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => (
         <th className="px-4 py-2.5 bg-neutral-100 text-left border-b border-neutral-200">

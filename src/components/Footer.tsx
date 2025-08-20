@@ -1,9 +1,9 @@
 import { format } from "date-fns";
 
 export const Footer = () => (
-  <footer className="bg-chardon w-full py-8 px-6 md:px-8 xl:px-0 md:py-12">
-    <div className="max-w-lg text-center md:text-left mx-auto grid gap-6 md:grid-cols-12 md:gap-16">
-      <section className="md:col-span-4 grid gap-2">
+  <footer className="bg-chardon w-full py-8 px-6 md:px-8 md:py-8 lg:py-10 xl:px-0">
+    <div className="max-w-lg text-center md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
+      <section className="md:col-span-8 grid gap-2">
         <h2 className="text-[#181A2A] font-semibold text-lg">About</h2>
 
         <p className="text-[#696A75] font-serif max-w-[289px] max-md:mx-auto">
@@ -16,7 +16,7 @@ export const Footer = () => (
         </p>
       </section>
 
-      <section className="md:col-span-2 flex flex-wrap gap-3 content-start">
+      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
         <h2 className="text-[#181A2A] w-full font-semibold text-lg">
           Quick Links
         </h2>
@@ -48,7 +48,7 @@ export const Footer = () => (
         </ul>
       </section>
 
-      <section className="md:col-span-2 flex flex-wrap gap-3 content-start">
+      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
         <h2 className="text-[#181A2A] w-full font-semibold text-lg">
           Other Links
         </h2>
@@ -72,7 +72,7 @@ export const Footer = () => (
         </ul>
       </section>
 
-      <section className="md:col-span-3 flex flex-wrap gap-3 content-start">
+      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
         <h2 className="text-[#181A2A] w-full font-semibold text-lg">
           Social Links
         </h2>
@@ -110,7 +110,7 @@ export const Footer = () => (
         </ul>
       </section>
 
-      <section className="md:col-span-12 text-sm font-light text-center text-[#696A75] font-serif">
+      <section className="md:col-span-20 text-sm font-light text-center text-[#696A75] font-serif">
         <span>
           &copy; {format(new Date(), "yyyy")} tr3 — All rights reserved.
         </span>
