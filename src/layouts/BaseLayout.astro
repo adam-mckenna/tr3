@@ -3,16 +3,23 @@ import BaseHead from "@components/BaseHead.astro";
 import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 
-import { Article, contentfulClient } from "@utils/contentful";
+import { Article, Category, contentfulClient } from "@utils/contentful";
 
-const data = await contentfulClient.getEntries<Article>({
+let { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
 });
-const articles = (data.items as Array<Article>).sort((a, b) => {
+articles = (articles as Array<Article>).sort((a, b) => {
   const d1 = new Date(a.fields.publishedDate);
   const d2 = new Date(b.fields.publishedDate);
   return d1 > d2 ? -1 : 1;
 });
+
+let { items: categories } = await contentfulClient.getEntries<Category>({
+  content_type: "category",
+});
+categories = (categories as Array<Category>).sort((a, b) =>
+  a.fields.name.localeCompare(b.fields.name),
+);
 
 const { title, metaDescription, isHome } = Astro.props;
 ---
@@ -29,6 +36,6 @@ const { title, metaDescription, isHome } = Astro.props;
       <slot />
     </main>
 
-    <Footer />
+    <Footer categories={categories} />
   </body>
 </html>

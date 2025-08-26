@@ -15,9 +15,10 @@ const {
   publishedDate,
   featuredImage,
   article_author,
-  category,
+  category: categoryFields,
 } = Astro.props;
 
+const category = categoryFields.fields.name;
 const author = article_author[0].fields;
 ---
 

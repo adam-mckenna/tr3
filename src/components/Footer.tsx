@@ -1,6 +1,8 @@
 import { format } from "date-fns";
 
-export const Footer = () => (
+import { Category } from "@utils/contentful";
+
+export const Footer = ({ categories }: { categories: Array<Category> }) => (
   <footer className="bg-chardon w-full py-8 px-6 md:px-8 md:py-8 lg:py-10 xl:px-0">
     <div className="max-w-lg text-center md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
       <section className="md:col-span-8 grid gap-2">
@@ -14,6 +16,24 @@ export const Footer = () => (
           recreational athletes who care about performance, not just
           participation.
         </p>
+      </section>
+
+      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
+        <h2 className="text-[#181A2A] w-full font-semibold text-lg">
+          Categories
+        </h2>
+        <ul className="grid gap-2 w-full">
+          {categories.map(({ fields }) => (
+            <li key={fields.slug}>
+              <a
+                href={`/categories/${fields.slug}`}
+                className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              >
+                {fields.name}
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
@@ -52,7 +72,7 @@ export const Footer = () => (
         <h2 className="text-[#181A2A] w-full font-semibold text-lg">
           Other Links
         </h2>
-        <ul className="grid gap-2 w-full">
+        <ul className="grid gap-2 w-full mb-6">
           <li>
             <a
               href="/terms-and-conditions"
@@ -70,9 +90,7 @@ export const Footer = () => (
             </a>
           </li>
         </ul>
-      </section>
 
-      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
         <h2 className="text-[#181A2A] w-full font-semibold text-lg">
           Social Links
         </h2>

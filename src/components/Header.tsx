@@ -88,7 +88,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           <li>
             <a
               className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-              href={site}
+              href={`${site}articles`}
             >
               Articles
             </a>

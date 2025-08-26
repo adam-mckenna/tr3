@@ -42,6 +42,14 @@ export interface Article {
   };
 }
 
+export interface Category {
+  contentTypeId: "category";
+  fields: {
+    slug: string;
+    name: string;
+  };
+}
+
 export const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
