@@ -5,7 +5,7 @@ import { Article } from "@utils/contentful";
 
 type HeaderProps = {
   site: string;
-  articles: Article[];
+  articles: Array<Article>;
 };
 
 export const Header = ({ site, articles }: HeaderProps) => {
@@ -46,8 +46,14 @@ export const Header = ({ site, articles }: HeaderProps) => {
   useEffect(() => {
     let filtered: Array<Article> = [];
     if (searchQuery !== "") {
-      filtered = articles.filter((article: Article) =>
-        article.fields.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      filtered = articles.filter(
+        (article: Article) =>
+          article.fields.title
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          article.fields.category.fields.name
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()),
       );
     }
 
@@ -138,14 +144,14 @@ export const Header = ({ site, articles }: HeaderProps) => {
             {searchQuery &&
               (filteredArticles.length > 0 ? (
                 <div className="w-full mt-4">
-                  {filteredArticles.map((article: Article) => (
+                  {filteredArticles.map(({ fields }: Article) => (
                     <a
                       tabIndex={isSearchFormVisible ? 0 : -1}
-                      href={`${site}articles/${article.fields.slug}`}
-                      key={article.fields.slug}
+                      href={`${site}articles/${fields.slug}`}
+                      key={fields.slug}
                       className="block text-white py-2 border-b border-gray-600 transition-all hover:px-2 focus:px-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                     >
-                      {article.fields.title}
+                      {fields.title}
                     </a>
                   ))}
                 </div>

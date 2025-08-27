@@ -1,19 +1,20 @@
 ---
 import { Category, contentfulClient } from "@utils/contentful";
-import { getFormattedDate } from "@utils/helpers";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import {} from "../../utils/contentful";
+import { SITE_TITLE } from "@utils/consts";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-let { items: categories } = await contentfulClient.getEntries<Category>({
+const { items } = await contentfulClient.getEntries<Category>({
   content_type: "category",
 });
-categories = (categories as Array<Category>).sort((a, b) =>
+const categories = (items as Array<Category>).sort((a, b) =>
   a.fields.name.localeCompare(b.fields.name),
 );
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true}>
+<BaseLayout
+  title={`All Categories | ${SITE_TITLE}`}
+  description="An overview of all running article categories"
+>
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"
   >
@@ -26,7 +27,7 @@ categories = (categories as Array<Category>).sort((a, b) =>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         categories.map(({ fields }) => {
-          const { name, slug, featuredImage } = fields;
+          const { name, slug, featuredImage, description } = fields;
 
           return (
             <article class="grid gap-0.5 content-start">
@@ -35,7 +36,7 @@ categories = (categories as Array<Category>).sort((a, b) =>
                 style={{
                   backgroundImage: `url('${featuredImage.fields.file.url}')`,
                 }}
-              ></div>
+              />
 
               <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
                 <a
@@ -45,9 +46,9 @@ categories = (categories as Array<Category>).sort((a, b) =>
                   {name}
                 </a>
               </h3>
-              {/* <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
-                {metaDescription}
-              </p> */}
+              <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
+                {description}
+              </p>
             </article>
           );
         })

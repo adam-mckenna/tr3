@@ -1,21 +1,23 @@
 ---
 import { Author, contentfulClient } from "@utils/contentful";
-import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import {} from "../../utils/contentful";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { items: authors } = await contentfulClient.getEntries<Author>({
   content_type: "author",
 });
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true}>
+<BaseLayout
+  title={`All Authors | ${SITE_TITLE}`}
+  description={SITE_DESCRIPTION}
+  isHome={true}
+>
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"
   >
     <h1 class="text-white text-2xl max-w-lg lg:text-4xl lg:mx-auto">
-      <span class="font-semibold">All categories</span>
+      <span class="font-semibold">All authors</span>
     </h1>
   </section>
 
@@ -23,7 +25,7 @@ const { items: authors } = await contentfulClient.getEntries<Author>({
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         authors.map(({ fields }) => {
-          const { name, slug, avatar } = fields;
+          const { name, slug, avatar, bio } = fields;
 
           return (
             <article class="grid gap-0.5 content-start">
@@ -32,7 +34,7 @@ const { items: authors } = await contentfulClient.getEntries<Author>({
                 style={{
                   backgroundImage: `url('${avatar.fields.file.url}')`,
                 }}
-              ></div>
+              />
 
               <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
                 <a
@@ -42,9 +44,9 @@ const { items: authors } = await contentfulClient.getEntries<Author>({
                   {name}
                 </a>
               </h3>
-              {/* <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
-                {metaDescription}
-              </p> */}
+              <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
+                {bio}
+              </p>
             </article>
           );
         })

@@ -2,7 +2,7 @@
 import { Article, contentfulClient } from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const data = await contentfulClient.getEntries<Article>({
   content_type: "article",

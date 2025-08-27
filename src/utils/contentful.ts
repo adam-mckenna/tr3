@@ -26,10 +26,8 @@ export interface Article {
     metaDescription: string;
     publishedDate: string;
     createdBy: string;
-    category: string;
-    article_author?: {
-      fields: Author["fields"];
-    };
+    category: Category;
+    article_author?: Author;
     featuredImage: {
       fields: {
         file: {
@@ -47,6 +45,15 @@ export interface Category {
   fields: {
     slug: string;
     name: string;
+    description: string;
+    featuredImage: {
+      fields: {
+        file: {
+          url: string;
+        };
+        description: string;
+      };
+    };
   };
 }
 
