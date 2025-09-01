@@ -2,9 +2,25 @@ import { format } from "date-fns";
 
 import { Category } from "@utils/contentful";
 
-export const Footer = ({ categories }: { categories: Array<Category> }) => (
-  <footer className="bg-chardon w-full py-8 px-6 md:px-8 md:py-8 lg:py-10 xl:px-0">
-    <div className="max-w-lg text-center md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
+type FooterProps = { categories: Array<Category>; isHome: boolean };
+
+export const Footer = ({ categories, isHome }: FooterProps) => (
+  <footer className="bg-chardon w-full px-6 md:px-8 xl:px-0">
+    {isHome && (
+      <div className="bg-[#EED9C3] -mx-6 md:-mx-8 md:px-8 lg:mx-0">
+        <div className="flex items-center justify-center w-full max-w-lg mx-auto py-6 md:justify-end">
+          <a
+            className="flex gap-1 items-center px-6 text-lg py-3 uppercase text-elba/75 text-center font-semibold transition-all focus:text-elba hover:text-elba hover:gap-3 focus:gap-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            href="articles"
+          >
+            <span className="tracking-[1px] ml-[1px]">View All Articles</span>
+            <span className="mb-2">&#10230;</span>
+          </a>
+        </div>
+      </div>
+    )}
+
+    <div className="max-w-lg text-center py-8 lg:py-10 md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
       <section className="md:col-span-8 grid gap-2">
         <h2 className="text-[#181A2A] font-semibold text-lg">About</h2>
 

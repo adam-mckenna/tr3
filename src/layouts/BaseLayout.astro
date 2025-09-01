@@ -36,6 +36,6 @@ const { title, metaDescription, isHome } = Astro.props;
       <slot />
     </main>
 
-    <Footer categories={categories} />
+    <Footer isHome={isHome} categories={categories} />
   </body>
 </html>
