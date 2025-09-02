@@ -9,7 +9,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"
   >
-    <h1 class="text-white text-2xl max-w-lg lg:text-4xl lg:mx-auto">
+    <h1
+      class="text-white text-2xl mx-auto max-w-[620px] lg:leading-12 lg:text-4xl"
+    >
       <span class="font-semibold"
         >For serious runners,<br />
         by serious runners.<br /></span
@@ -18,31 +20,71 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </h1>
   </section>
 
-  <section class="pt-8 px-4 grid gap-4 lg:px-0">
+  <section class="pt-8 px-4 md:px-0 grid gap-4 max-w-[620px] mx-auto lg:px-0">
     <h2 class="font-bold text-elba text-lg">Who are tr3?</h2>
 
     <p class="text-[#3B3C4A] text-base">
-      <strong>tr3</strong> -- pronounced <i>“tee-are-3”</i> -- is a platform created
-      for <strong>serious runners, by serious runners</strong>.
+      <strong>tr3</strong> &#x2015; pronounced <i>tee-are-three</i> &#x2015; is a
+      platform created for <strong>serious runners, by serious runners</strong>.
     </p>
     <p class="text-[#3B3C4A] text-base">
       We publish <strong>authentic, high-quality, science-backed content</strong
       > for recreational runners who care about <strong
-        >performance, not just participation</strong
+        >optimal performance</strong
       >.
     </p>
 
     <p class="text-[#3B3C4A] text-base">
-      This is a space for the kind of runners who open Strava before they shower
-      — not to justify dessert, but to chase growth; the kind of <strong
-        >runners who want to understand why something works, not just be told
-        what to do</strong
-      >.
+      This is a space for the kind of runners who open <i>Strava</i> before they
+      shower. We're writing for the people who run to chase growth, not (just) to
+      justify dessert.
     </p>
 
+    <p>
+      If you're the kind of runner who <strong
+        >wants to understand <i>why</i> something works, and not just be told what
+        to do</strong
+      >, you're in the right place.
+    </p>
+
+    <p>
+      In the words of <a
+        target="_blank"
+        class="text-sea-blue hover:text-[#044862] focus:text-[#044862] underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+        rel="noopener noreferrer"
+        href="https://en.wikipedia.org/wiki/Jack_Daniels_(coach)"
+        >Jack Daniels</a
+      > (the coach, not the whisky):
+    </p>
+
+    <blockquote class="p-4 border-s-4 border-gray-300 bg-gray-50">
+      "Good running results from knowing WHY you do what you do."
+    </blockquote>
+
+    <h2 class="font-bold text-elba text-lg mt-4">What does 'tr3' mean?</h2>
+
     <p class="text-[#3B3C4A] text-base">
-      The name stems from the four equal stages that any serious runner should
-      follow: <strong>train, race, recover, repeat</strong>.
+      Our name stems from our belief in the four equally important stages that
+      make up the cycle of a runner's journey:
+
+      <ol class="grid gap-2.5 list-decimal ml-4">
+        <li class="pl-0.5">
+          <span class="font-semibold">Train</span>: proper training is the
+          bedrock of any runner
+        </li>
+        <li class="pl-0.5">
+          <span class="font-semibold">Race</span>: racing is why we train, it's
+          the fun part
+        </li>
+        <li class="pl-0.5">
+          <span class="font-semibold">Recover</span>: often under-appreciated,
+          recovery is essential for longevity and performance
+        </li>
+        <li class="pl-0.5">
+          <span class="font-semibold">Repeat</span>: by training, racing and
+          recovering well, we can repeat this process indefinitely
+        </li>
+      </ol>
     </p>
   </section>
 </BaseLayout>

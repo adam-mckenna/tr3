@@ -39,9 +39,11 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
         <ul className="grid gap-1.5 list-disc ml-5">{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (_node, children) => (
-        <ol className="grid gap-1.5 list-decimal ml-6">{children}</ol>
+        <ol className="grid gap-1.5 list-decimal ml-4">{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (_node, children) => <li>{children}</li>,
+      [BLOCKS.LIST_ITEM]: (_node, children) => (
+        <li className="pl-0.5">{children}</li>
+      ),
       [INLINES.HYPERLINK]: (node, children) => (
         <a
           href={node.data.uri}
