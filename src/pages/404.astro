@@ -32,78 +32,78 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
         </p>
       </p>
     </div>
+  </section>
+  
+  <section class="grid gap-6" aria-label="latest articles">
+    <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
+      <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
+      <h2 class="text-lg font-semibold">Recent articles</h2>
+      <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
+    </header>
 
-    <section class="grid gap-6" aria-label="latest articles">
-      <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
-        <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
-        <h2 class="text-lg font-semibold">Recent articles</h2>
-        <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
-      </header>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        articles.map(({ fields }) => {
+          const {
+            title,
+            slug,
+            category: categoryFields,
+            publishedDate,
+            metaDescription,
+            article_author,
+            featuredImage,
+          } = fields;
 
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {
-          articles.map(({ fields }) => {
-            const {
-              title,
-              slug,
-              category: categoryFields,
-              publishedDate,
-              metaDescription,
-              article_author,
-              featuredImage,
-            } = fields;
+          const category = categoryFields.fields.name;
+          const author = article_author[0].fields;
 
-            const category = categoryFields.fields.name;
-            const author = article_author[0].fields;
-
-            return (
-              <article class="grid gap-0.5 content-start">
-                <div
-                  class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
-                  style={{
-                    backgroundImage: `url('${featuredImage.fields.file.url}')`,
-                  }}
-                >
-                  <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
-                    {category}
-                  </p>
-                </div>
-
-                <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
-                  <a
-                    class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-                    href={new URL(`articles/${slug}`, Astro.site)}
-                  >
-                    {title}
-                  </a>
-                </h3>
-                <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
-                  {metaDescription}
+          return (
+            <article class="grid gap-0.5 content-start">
+              <div
+                class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                style={{
+                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                }}
+              >
+                <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
+                  {category}
                 </p>
+              </div>
 
-                <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
-                  <span
-                    class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
-                    style={{
-                      backgroundImage: `url('${author.avatar.fields.file.url}')`,
-                    }}
-                  />
-                  <p class="text-sm font-semibold">
-                    <a
-                      class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-                      href={new URL(`authors/${author.slug}`, Astro.site)}
-                    >
-                      {author.name}
-                    </a>
-                  </p>
-                  <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
-                  <p class="text-sm">{getFormattedDate(publishedDate)}</p>
-                </div>
-              </article>
-            );
-          })
-        }
-      </div>
-    </section>
+              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
+                <a
+                  class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                  href={new URL(`articles/${slug}`, Astro.site)}
+                >
+                  {title}
+                </a>
+              </h3>
+              <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
+                {metaDescription}
+              </p>
+
+              <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
+                <span
+                  class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
+                  style={{
+                    backgroundImage: `url('${author.avatar.fields.file.url}')`,
+                  }}
+                />
+                <p class="text-sm font-semibold">
+                  <a
+                    class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                    href={new URL(`authors/${author.slug}`, Astro.site)}
+                  >
+                    {author.name}
+                  </a>
+                </p>
+                <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
+                <p class="text-sm">{getFormattedDate(publishedDate)}</p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
   </section>
 </BaseLayout>
