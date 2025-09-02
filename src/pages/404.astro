@@ -1,23 +1,109 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
-import { Header } from "@components/Header";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_TITLE } from "../utils/consts";
+import { Article, contentfulClient } from "../utils/contentful";
+import { getFormattedDate } from "../utils/helpers";
+
+const { items: articles } = await contentfulClient.getEntries<Article>({
+  content_type: "article",
+  limit: 3,
+  order: "-fields.publishedDate",
+});
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="About Adam"
-      description="Hello, my name is Adam. I'm a passionate runner who builds websites for a living. I decided to put those two skills together to create this blog."
-    />
-  </head>
+<BaseLayout
+  title={`Page Not Found | ${SITE_TITLE}`}
+  description="Error 404: page not found."
+>
+  <section
+    class="w-100vw bg-chardon -mx-4 px-4 pt-6 md:p-0 md:pt-12 lg:py-18 lg:px-6 lg:mx-[calc((1216px-100vw)/2)]"
+  >
+    <div class="max-w-[620px] mx-auto">
+      <h1 class="font-black text-3xl text-elba">
+        Well, this is embarrassing. 🤷
+      </h1>
+      <p class="text-philippine-grey text-lg font-serif mt-3">
+        <span class="font-semibold">Error 404</span>. That means we can't find
+        the page you're looking for. The article may have been deleted, renamed
+        or moved. Sorry about that.
 
-  <body>
-    <Header site={Astro.site} client:load />
+        <p class="font-semibold text-philippine-grey text-lg font-serif mt-2">
+          Why not try one of these articles instead?
+        </p>
+      </p>
+    </div>
 
-    <section class="w-full max-w-128 mx-auto px-6 py-8 md:p-0 md:pt-12">
-      <h1 class="font-black text-3xl text-elba">Error 404: Page not found.</h1>
-      <p class="text-philippine-grey text-lg font-serif mt-1">Sorry 🤷</p>
+    <section class="grid gap-6" aria-label="latest articles">
+      <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
+        <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
+        <h2 class="text-lg font-semibold">Recent articles</h2>
+        <hr class="flex flex-grow w-fit border-top border-[#97989F]/50" />
+      </header>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          articles.map(({ fields }) => {
+            const {
+              title,
+              slug,
+              category: categoryFields,
+              publishedDate,
+              metaDescription,
+              article_author,
+              featuredImage,
+            } = fields;
+
+            const category = categoryFields.fields.name;
+            const author = article_author[0].fields;
+
+            return (
+              <article class="grid gap-0.5 content-start">
+                <div
+                  class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                  style={{
+                    backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                  }}
+                >
+                  <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
+                    {category}
+                  </p>
+                </div>
+
+                <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
+                  <a
+                    class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                    href={new URL(`articles/${slug}`, Astro.site)}
+                  >
+                    {title}
+                  </a>
+                </h3>
+                <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
+                  {metaDescription}
+                </p>
+
+                <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
+                  <span
+                    class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
+                    style={{
+                      backgroundImage: `url('${author.avatar.fields.file.url}')`,
+                    }}
+                  />
+                  <p class="text-sm font-semibold">
+                    <a
+                      class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                      href={new URL(`authors/${author.slug}`, Astro.site)}
+                    >
+                      {author.name}
+                    </a>
+                  </p>
+                  <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
+                  <p class="text-sm">{getFormattedDate(publishedDate)}</p>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
     </section>
-  </body>
-</html>
+  </section>
+</BaseLayout>
