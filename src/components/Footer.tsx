@@ -81,6 +81,14 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
               About
             </a>
           </li>
+          <li>
+            <a
+              href="/running-resources"
+              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            >
+              Resources
+            </a>
+          </li>
         </ul>
       </section>
 
