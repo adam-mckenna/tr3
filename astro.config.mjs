@@ -10,7 +10,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
-  site: isProd ? "https://www.tr3.run" : "http://localhost:4321",
+  site: isProd ? "https://tr3.run" : "http://localhost:4321",
   integrations: [
     mdx(),
     sitemap(),
