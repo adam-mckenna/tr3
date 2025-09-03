@@ -12,8 +12,9 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
 const featuredArticle = articles.shift();
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} isHome={true}>
+<BaseLayout title={SITE_TITLE} metaDescription={SITE_DESCRIPTION} isHome={true}>
   <section aria-label="featured article" class="w-full gap-6">
+    <h1 class="sr-only">{SITE_TITLE}</h1>
     <a
       class="group"
       href={`${Astro.site}articles/${featuredArticle.fields.slug}`}

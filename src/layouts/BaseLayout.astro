@@ -5,21 +5,14 @@ import { Footer } from "@components/Footer";
 
 import { Article, Category, contentfulClient } from "@utils/contentful";
 
-let { items: articles } = await contentfulClient.getEntries<Article>({
+const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
+  order: "-fields.publishedDate",
 });
-articles = (articles as Array<Article>).sort((a, b) => {
-  const d1 = new Date(a.fields.publishedDate);
-  const d2 = new Date(b.fields.publishedDate);
-  return d1 > d2 ? -1 : 1;
-});
-
-let { items: categories } = await contentfulClient.getEntries<Category>({
+const { items: categories } = await contentfulClient.getEntries<Category>({
   content_type: "category",
+  order: "fields.name",
 });
-categories = (categories as Array<Category>).sort((a, b) =>
-  a.fields.name.localeCompare(b.fields.name),
-);
 
 const { title, metaDescription, isHome } = Astro.props;
 ---

@@ -12,7 +12,7 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
 
 <BaseLayout
   title={`All Authors | ${SITE_TITLE}`}
-  description={SITE_DESCRIPTION}
+  metaDescription={SITE_DESCRIPTION}
 >
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"

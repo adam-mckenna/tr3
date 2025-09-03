@@ -3,17 +3,15 @@ import { Category, contentfulClient } from "@utils/contentful";
 import { SITE_TITLE } from "@utils/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const { items } = await contentfulClient.getEntries<Category>({
+const { items: categories } = await contentfulClient.getEntries<Category>({
   content_type: "category",
+  order: "fields.name",
 });
-const categories = (items as Array<Category>).sort((a, b) =>
-  a.fields.name.localeCompare(b.fields.name),
-);
 ---
 
 <BaseLayout
   title={`All Categories | ${SITE_TITLE}`}
-  description="An overview of all running article categories"
+  metaDescription="An overview of all running article categories"
 >
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"

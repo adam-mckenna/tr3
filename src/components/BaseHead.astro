@@ -16,7 +16,6 @@ interface Props {
   image?: ImageMetadata;
 }
 
-console.log(Astro.site)
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { isHome, title, description, image = FallbackImage } = Astro.props;
