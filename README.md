@@ -2,7 +2,7 @@
 
 **_tr3_ is a platform for serious runners, by serious runners.**
 
-We publish authentic, high-quality, science-backed content for recreational athletes who care about performance, not just participation.
+We publish authentic, high-quality, science-backed content for recreational runners who care about performance, not just participation.
 
 ## Tech
 

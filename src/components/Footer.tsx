@@ -83,6 +83,22 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
+              href="/categories"
+              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            >
+              Categories
+            </a>
+          </li>
+          <li>
+            <a
+              href="/authors"
+              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            >
+              Authors
+            </a>
+          </li>
+          <li>
+            <a
               href="/running-resources"
               className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
@@ -133,7 +149,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
             <a
               href="https://www.youtube.com/@tr3running"
               target="_blank"
-              aria-label="TR3 YouTube channel"
+              aria-label="tr3 YouTube channel"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-youtube block bg-[#3B3C4A] w-4 h-4" />
