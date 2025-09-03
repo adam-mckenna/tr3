@@ -16,7 +16,11 @@ interface Props {
   image?: ImageMetadata;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const removeTrailingSlash = (url: string) => url.replace(/\/+$/, "");
+
+const canonicalUrl = removeTrailingSlash(
+  new URL(Astro.url.pathname, Astro.site).toString(),
+);
 
 const { isHome, title, description, image = FallbackImage } = Astro.props;
 
@@ -49,7 +53,7 @@ const metaTitle = isHome
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={canonicalUrl} />
 
 <!-- Primary Meta Tags -->
 <title>{metaTitle}</title>
