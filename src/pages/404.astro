@@ -11,10 +11,7 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
 });
 ---
 
-<BaseLayout
-  title={`Page Not Found | ${SITE_TITLE}`}
-  metaDescription="Error 404: page not found."
->
+<BaseLayout title="Page Not Found" metaDescription="Error 404: page not found.">
   <section
     class="w-100vw bg-chardon -mx-4 px-4 pt-6 md:p-0 md:pt-12 lg:py-18 lg:px-6 lg:mx-[calc((1216px-100vw)/2)]"
   >

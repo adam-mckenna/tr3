@@ -1,7 +1,6 @@
 ---
 import { Category, Article, contentfulClient } from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
-import { SITE_TITLE } from "@utils/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export const getStaticPaths = async () => {
@@ -30,10 +29,7 @@ articles = (articles as Array<Article>)
   });
 ---
 
-<BaseLayout
-  title={`${name} Articles | ${SITE_TITLE}`}
-  metaDescription={description}
->
+<BaseLayout title={`${name} Articles`} metaDescription={description}>
   <section
     class="bg-elba -mx-4 py-8 px-8 md:-mx-6 md:py-12 lg:mx-[calc((1216px-100vw)/2)]"
   >

@@ -1,6 +1,5 @@
 ---
 import { Category, contentfulClient } from "@utils/contentful";
-import { SITE_TITLE } from "@utils/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { items: categories } = await contentfulClient.getEntries<Category>({
@@ -10,7 +9,7 @@ const { items: categories } = await contentfulClient.getEntries<Category>({
 ---
 
 <BaseLayout
-  title={`All Categories | ${SITE_TITLE}`}
+  title="All Categories"
   metaDescription="An overview of all running article categories"
 >
   <section
