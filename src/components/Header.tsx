@@ -16,6 +16,21 @@ export const Header = ({ site, articles }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredArticles, setFilteredArticles] = useState<Array<Article>>([]);
 
+  const [isFocusingLogo, setIsFocusingLogo] = useState(false);
+
+  const showLogo = () => {
+    setIsFocusingLogo(true);
+  };
+
+  const hideLogo = () => {
+    setIsFocusingLogo(false);
+  };
+
+  const handleOnCloseSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.preventDefault();
+    setIsSearchFormVisible(false);
+  };
+
   const closeSearchForm = ({ key }: any) => {
     if (isSearchFormVisible && key === "Escape") {
       setIsSearchFormVisible(false);
@@ -28,11 +43,6 @@ export const Header = ({ site, articles }: HeaderProps) => {
       window.removeEventListener("keydown", closeSearchForm);
     };
   }, [closeSearchForm]);
-
-  const handleOnCloseSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
-    e.preventDefault();
-    setIsSearchFormVisible(false);
-  };
 
   useEffect(() => {
     if (!isSearchFormVisible && searchButtonRef.current) {
@@ -64,17 +74,18 @@ export const Header = ({ site, articles }: HeaderProps) => {
     <header className="relative flex p-4 max-w-lg mx-auto md:p-6 xl:p-0 xl:pt-6 xl:pb-2">
       <a
         href={site}
-        className="relative items-center min-w-12 w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all group focus:online-none focus:ring-0"
+        onMouseOver={showLogo}
+        onFocus={showLogo}
+        onMouseLeave={hideLogo}
+        onBlur={hideLogo}
+        aria-label="tr3: train, race, recover, repeat."
+        className="relative items-center min-w-12 w-12 md:w-14 hover:z-100 focus:z-100 justify-self-start cursor-pointer transition-all hover:ring-2 hover:ring-elba hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
       >
-        <img
-          src="/images/tr3-logo.svg"
-          alt="tr3: train, race, recover, repeat."
-          className="w-12 h-12 md:w-14 md:h-14 transition-[opacity] group-focus:opacity-0 group-hover:opacity-0"
-        />
-        <img
-          src="/images/tr3-logo-inverted.svg"
-          alt=""
-          className="absolute top-0 w-12 h-12 md:w-14 md:h-14 transition-[opacity] opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2"
+        <div
+          className="w-12 h-12 md:w-14 md:h-14 transition-all bg-contain"
+          style={{
+            backgroundImage: `url('/images/tr3-logo${isFocusingLogo ? "-inverted" : ""}.svg`,
+          }}
         />
       </a>
 
@@ -85,7 +96,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
         <ul className="flex gap-2 md:gap-3 lg:gap-6">
           <li>
             <a
-              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:ring-2 hover:ring-elba hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={site}
             >
               Home
@@ -93,7 +104,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           </li>
           <li>
             <a
-              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:ring-2 hover:ring-elba hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={`${site}articles`}
             >
               Articles
@@ -101,7 +112,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
           </li>
           <li>
             <a
-              className="cursor-pointer py-1 px-2 transition-all hover:underline decoration-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="cursor-pointer py-1 px-2 transition-all hover:ring-2 hover:ring-elba hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               href={`${site}about`}
             >
               About
@@ -122,7 +133,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
                 handleOnCloseSearch(e);
               }
             }}
-            className="absolute top-4 right-4 flex items-center cursor-pointer justify-center h-8 w-8 transition-all opacity-75 focus:opacity-100 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            className="absolute top-4 right-4 flex items-center cursor-pointer justify-center h-8 w-8 transition-all opacity-75 focus:opacity-100 hover:opacity-100  focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
           >
             <span className="icon-close text-white w-4 h-4" />
           </button>
@@ -176,7 +187,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
             }
           }
         }}
-        className="grid items-center content-center justify-center cursor-pointer gap-1.5 min-w-12 w-12 h-12 md:w-14 md:h-14 group bg-elba transition-all hover:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+        className="grid items-center content-center justify-center cursor-pointer gap-1.5 min-w-12 w-12 h-12 md:w-14 md:h-14 group bg-elba transition-all hover:bg-white hover:ring-2 hover:ring-elba hover:ring-offset-2 focus:bg-white focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
       >
         <span className="icon-search w-4 h-4 md:w-6 md:h-6 text-white transition-all group-hover:text-elba group-focus:text-elba" />
       </button>
