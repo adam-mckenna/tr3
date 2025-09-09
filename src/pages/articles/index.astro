@@ -1,12 +1,18 @@
 ---
-import { Article, contentfulClient } from "@utils/contentful";
+import {
+  Article,
+  contentfulClient,
+  Image,
+  Author,
+  Category,
+} from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_DESCRIPTION } from "@utils/consts";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
-  order: "-fields.publishedDate",
+  order: ["-fields.publishedDate"],
 });
 ---
 
@@ -22,7 +28,7 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
   <section class="grid gap-6 mt-10" aria-label="latest articles">
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        articles.map(({ fields }: Article) => {
+        articles.map((article) => {
           const {
             title,
             slug,
@@ -31,17 +37,17 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
             metaDescription,
             article_author,
             featuredImage,
-          } = fields;
+          } = article.fields;
 
-          const category = categoryFields.fields.name;
-          const author = article_author[0].fields;
+          const category = (categoryFields as Category).fields.name;
+          const author = (article_author[0] as Author).fields;
 
           return (
             <article class="grid gap-0.5 content-start">
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
-                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                  backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}
               >
                 <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import { FocusTrap } from "focus-trap-react";
-import { Article } from "@utils/contentful";
+
+import { Article } from "src/utils/contentful";
 
 type HeaderProps = {
   site: string;

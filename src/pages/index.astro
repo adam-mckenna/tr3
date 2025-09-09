@@ -1,5 +1,11 @@
 ---
-import { Article, contentfulClient } from "@utils/contentful";
+import {
+  Article,
+  Author,
+  Category,
+  Image,
+  contentfulClient,
+} from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -7,7 +13,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
   limit: 10,
-  order: "-fields.publishedDate",
+  order: ["-fields.publishedDate"],
 });
 const featuredArticle = articles.shift();
 ---
@@ -15,52 +21,54 @@ const featuredArticle = articles.shift();
 <BaseLayout title={SITE_TITLE} metaDescription={SITE_DESCRIPTION} isHome={true}>
   <section aria-label="featured article" class="w-full gap-6">
     <h1 class="sr-only">{SITE_TITLE}</h1>
-    <a
-      class="group"
-      href={`${Astro.site}articles/${featuredArticle.fields.slug}`}
-      aria-label={featuredArticle.fields.title}
-    >
-      <article
-        class="relative h-[400px] md:h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
-        style={{
-          backgroundImage: `url('${featuredArticle.fields.featuredImage.fields.file.url}')`,
-        }}
-      >
-        <div class="absolute w-full h-full bg-[#141624]/40"></div>
-
-        <div class="relative z-10 p-6 md:py-14 md:px-12 grid gap-4">
-          <p
-            class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit"
+    {
+      featuredArticle && (
+        <a
+          class="group"
+          href={`${Astro.site}articles/${featuredArticle.fields.slug}`}
+          aria-label={featuredArticle.fields.title}
+        >
+          <article
+            class="relative h-[400px] md:h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
+            style={{
+              backgroundImage: `url('${(featuredArticle.fields.featuredImage as Image).fields.file.url}')`,
+            }}
           >
-            {featuredArticle.fields.category.fields.name}
-          </p>
+            <div class="absolute w-full h-full bg-[#141624]/40" />
 
-          <div
-            class="flex items-center gap-2 md:gap-2.5 text-white font-serif w-max"
-          >
-            <span
-              class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-white"
-              style={{
-                backgroundImage: `url('${featuredArticle.fields.article_author[0].fields.avatar.fields.file.url}')`,
-              }}></span>
-            <p class="text-sm font-semibold md:text-base">
-              {featuredArticle.fields.article_author[0].fields.name}
-            </p>
-            <span class="bg-white w-1 h-1 rounded-full"></span>
-            <p class="text-sm md:text-base">
-              {getFormattedDate(featuredArticle.fields.publishedDate)}
-            </p>
-          </div>
+            <div class="relative z-10 p-6 md:py-14 md:px-12 grid gap-4">
+              <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
+                {(featuredArticle.fields.category as Category).fields.name}
+              </p>
 
-          <h2
-            class="font-extrabold text-2xl md:text-4xl text-white max-w-[500px]"
-          >
-            <span class="sr-only">Featured article:</span>
-            {featuredArticle.fields.title}
-          </h2>
-        </div>
-      </article></a
-    >
+              <div class="flex items-center gap-2 md:gap-2.5 text-white font-serif w-max">
+                <span
+                  class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-white"
+                  style={{
+                    backgroundImage: `url('${(featuredArticle.fields.article_author[0] as Author).fields.avatar.fields.file.url}')`,
+                  }}
+                />
+                <p class="text-sm font-semibold md:text-base">
+                  {
+                    (featuredArticle.fields.article_author[0] as Author).fields
+                      .name
+                  }
+                </p>
+                <span class="bg-white w-1 h-1 rounded-full" />
+                <p class="text-sm md:text-base">
+                  {getFormattedDate(featuredArticle.fields.publishedDate)}
+                </p>
+              </div>
+
+              <h2 class="font-extrabold text-2xl md:text-4xl text-white max-w-[500px]">
+                <span class="sr-only">Featured article:</span>
+                {featuredArticle.fields.title}
+              </h2>
+            </div>
+          </article>
+        </a>
+      )
+    }
   </section>
 
   <section class="grid gap-6" aria-label="latest articles">
@@ -83,15 +91,15 @@ const featuredArticle = articles.shift();
             featuredImage,
           } = fields;
 
-          const category = categoryFields.fields.name;
-          const author = article_author[0].fields;
+          const category = (categoryFields as Category).fields.name;
+          const author = (article_author[0] as Author).fields;
 
           return (
             <article class="grid gap-0.5 content-start">
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
-                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                  backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}
               >
                 <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">

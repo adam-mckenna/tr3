@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-import { Category } from "@utils/contentful";
+import { Category } from "src/utils/contentful";
 
 type FooterProps = { categories: Array<Category>; isHome: boolean };
 

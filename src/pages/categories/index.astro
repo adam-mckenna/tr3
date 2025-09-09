@@ -1,10 +1,11 @@
 ---
-import { Category, contentfulClient } from "@utils/contentful";
+import { Image, Category, contentfulClient } from "@utils/contentful";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { items: categories } = await contentfulClient.getEntries<Category>({
   content_type: "category",
-  order: "fields.name",
+  // todo: fix type issue
+  order: ["fields.name"] as any,
 });
 ---
 
@@ -31,7 +32,7 @@ const { items: categories } = await contentfulClient.getEntries<Category>({
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
-                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                  backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}
               />
 

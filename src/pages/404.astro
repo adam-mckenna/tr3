@@ -1,13 +1,18 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { SITE_TITLE } from "../utils/consts";
-import { Article, contentfulClient } from "../utils/contentful";
-import { getFormattedDate } from "../utils/helpers";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import {
+  Image,
+  Article,
+  Author,
+  Category,
+  contentfulClient,
+} from "@utils/contentful";
+import { getFormattedDate } from "@utils/helpers";
 
 const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
   limit: 3,
-  order: "-fields.publishedDate",
+  order: ["-fields.publishedDate"],
 });
 ---
 
@@ -51,15 +56,15 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
             featuredImage,
           } = fields;
 
-          const category = categoryFields.fields.name;
-          const author = article_author[0].fields;
+          const category = (categoryFields as Category).fields.name;
+          const author = (article_author[0] as Author).fields;
 
           return (
             <article class="grid gap-0.5 content-start">
               <div
                 class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                 style={{
-                  backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                  backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}
               >
                 <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">

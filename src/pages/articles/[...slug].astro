@@ -1,12 +1,13 @@
 ---
 import Layout from "@layouts/Article.astro";
-import { Article, contentfulClient } from "@utils/contentful";
+import { Article } from "@utils/contentful";
+import { contentfulClient } from "@utils/contentful";
 
 export const getStaticPaths = async () => {
   const { items } = await contentfulClient.getEntries<Article>({
     content_type: "article",
   });
-  return items.map(({ fields }) => ({
+  return items.map(({ fields }: { fields: { slug: string } }) => ({
     params: { slug: fields.slug },
     props: {
       ...fields,

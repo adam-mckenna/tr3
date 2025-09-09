@@ -1,5 +1,11 @@
 ---
-import { Author, Article, contentfulClient } from "@utils/contentful";
+import {
+  Image,
+  Article,
+  contentfulClient,
+  Author,
+  Category,
+} from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -7,7 +13,7 @@ export const getStaticPaths = async () => {
   const { items: authors } = await contentfulClient.getEntries<Author>({
     content_type: "author",
   });
-  return authors.map(({ fields }: Author) => ({
+  return authors.map(({ fields }) => ({
     params: { slug: fields.slug },
     props: {
       ...fields,
@@ -19,12 +25,14 @@ const { name, role, bio, avatar, slug } = Astro.props;
 
 const { items } = await contentfulClient.getEntries<Article>({
   content_type: "article",
-  order: "-fields.publishedDate",
+  order: ["-fields.publishedDate"],
 });
-const articles = (items as Array<Article>).filter(
-  ({ fields }: Article) =>
+const articles = items.filter(
+  ({ fields }) =>
     fields.article_author &&
-    fields.article_author.some((author: Author) => author.fields.slug === slug),
+    (fields.article_author as Array<Author>).some(
+      (author: Author) => author.fields.slug === slug,
+    ),
 );
 ---
 
@@ -34,7 +42,9 @@ const articles = (items as Array<Article>).filter(
   >
     <div class="flex items-center gap-2 w-full justify-center">
       <div
-        style={{ "background-image": `url(${avatar.fields.file.url})` }}
+        style={{
+          "background-image": `url(${(avatar as Image).fields.file.url})`,
+        }}
         class="rounded-full bg-cover bg-center w-16 h-16"
       >
       </div>
@@ -65,7 +75,7 @@ const articles = (items as Array<Article>).filter(
         </header>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map(({ fields }: Article) => {
+          {articles.map(({ fields }) => {
             const {
               title,
               slug: articleSlug,
@@ -75,14 +85,14 @@ const articles = (items as Array<Article>).filter(
               featuredImage,
             } = fields;
 
-            const category = categoryFields.fields.name;
+            const category = (categoryFields as Category).fields.name;
 
             return (
               <article class="grid gap-0.5 content-start">
                 <div
                   class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
                   style={{
-                    backgroundImage: `url('${featuredImage.fields.file.url}')`,
+                    backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                   }}
                 >
                   <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
@@ -106,7 +116,7 @@ const articles = (items as Array<Article>).filter(
                   <span
                     class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
                     style={{
-                      backgroundImage: `url('${avatar.fields.file.url}')`,
+                      backgroundImage: `url('${(avatar as Image).fields.file.url}')`,
                     }}
                   />
                   <p class="text-sm font-semibold">{name}</p>
