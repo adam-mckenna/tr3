@@ -1,21 +1,22 @@
-import { createClient, EntryFieldTypes } from "contentful";
+import { createClient, EntryFields, EntryFieldTypes } from "contentful";
 
 export interface Image {
   fields: {
     file: {
-      url: string;
+      url: EntryFields.Text;
     };
-    description: string;
+    title: EntryFields.Text;
+    description: EntryFields.Text;
   };
 }
 
 export interface Author {
   contentTypeId: "author";
   fields: {
-    slug: string;
-    name: string;
-    role: string;
-    bio: string;
+    slug: EntryFields.Text;
+    name: EntryFields.Text;
+    role: EntryFields.Text;
+    bio: EntryFields.Text;
     avatar: Image;
   };
 }
@@ -23,11 +24,11 @@ export interface Author {
 export interface Article {
   contentTypeId: "article";
   fields: {
-    slug: string;
-    title: string;
-    metaDescription: string;
+    slug: EntryFields.Text;
+    title: EntryFields.Text;
+    metaDescription: EntryFields.Text;
     publishedDate: EntryFieldTypes.Date;
-    createdBy: string;
+    createdBy: EntryFields.Text;
     category: Category;
     article_author: Array<Author>;
     featuredImage: Image;
@@ -38,9 +39,9 @@ export interface Article {
 export interface Category {
   contentTypeId: "category";
   fields: {
-    slug: string;
-    name: string;
-    description: string;
+    slug: EntryFields.Text;
+    name: EntryFields.Text;
+    description: EntryFields.Text;
     featuredImage: Image;
   };
 }

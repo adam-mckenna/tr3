@@ -1,16 +1,17 @@
-import React from "react";
-
+import { FC } from "react";
 import {
   documentToReactComponents,
   Options,
 } from "@contentful/rich-text-react-renderer";
 import { Document, BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 
-type Props = {
+import { Image } from "@utils/contentful";
+
+type RichTextRendererProps = {
   body: Document;
 };
 
-export const RichTextRenderer: React.FC<Props> = ({ body }) => {
+export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <strong>{text}</strong>,
@@ -74,13 +75,7 @@ export const RichTextRenderer: React.FC<Props> = ({ body }) => {
         <hr className="border-b border-t-0 my-2 border-neutral-200" />
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const asset = node.data.target as {
-          fields: {
-            file: { url: string };
-            description?: string;
-            title?: string;
-          };
-        };
+        const asset = node.data.target as Image;
 
         if (!asset.fields.file?.url) return null;
 

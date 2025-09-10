@@ -4,8 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { items: categories } = await contentfulClient.getEntries<Category>({
   content_type: "category",
-  // todo: fix type issue
-  order: ["fields.name"] as any,
+  order: ["-fields.name"] as any,
 });
 ---
 

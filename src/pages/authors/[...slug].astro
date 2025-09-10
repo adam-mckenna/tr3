@@ -21,12 +21,13 @@ export const getStaticPaths = async () => {
   }));
 };
 
-const { name, role, bio, avatar, slug } = Astro.props;
-
 const { items } = await contentfulClient.getEntries<Article>({
   content_type: "article",
   order: ["-fields.publishedDate"],
 });
+
+const { name, role, bio, avatar, slug } = Astro.props;
+
 const articles = items.filter(
   ({ fields }) =>
     fields.article_author &&
