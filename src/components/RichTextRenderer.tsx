@@ -56,7 +56,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
         </a>
       ),
       [BLOCKS.TABLE]: (_node, children) => (
-        <div className="overflow-scroll max-w-full border border-neutral-200">
+        <div className="overflow-x-scroll overflow-y-hidden max-w-full border border-neutral-200">
           <table>{children}</table>
         </div>
       ),
