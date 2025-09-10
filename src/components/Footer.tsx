@@ -7,7 +7,7 @@ type FooterProps = { categories: Array<Category>; isHome: boolean };
 export const Footer = ({ categories, isHome }: FooterProps) => (
   <footer className="bg-chardon w-full px-6 md:px-8 xl:px-0">
     {isHome && (
-      <div className="bg-[#EED9C3] -mx-6 md:-mx-8 md:px-8 lg:mx-0">
+      <div className="bg-figure-stone -mx-6 md:-mx-8 md:px-8 lg:mx-0">
         <div className="flex items-center justify-center w-full max-w-lg mx-auto py-6 md:justify-end">
           <a
             className="flex gap-1 items-center px-6 text-lg py-3 uppercase text-elba/75 text-center font-semibold transition-all focus:text-elba hover:text-elba hover:gap-3 focus:gap-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
@@ -22,12 +22,12 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
 
     <div className="max-w-lg text-center py-8 lg:py-10 md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
       <section className="md:col-span-8 grid gap-2">
-        <h2 className="text-[#181A2A] font-semibold text-lg">About</h2>
+        <h2 className="text-neutral-950 font-semibold text-lg">About</h2>
 
-        <p className="text-[#696A75] font-serif max-w-[289px] max-md:mx-auto">
+        <p className="text-neutral-500 font-serif max-w-[289px] max-md:mx-auto">
           tr3 is a platform created for serious runners, by serious runners.
         </p>
-        <p className="text-[#696A75] font-serif max-w-[289px] max-md:mx-auto">
+        <p className="text-neutral-500 font-serif max-w-[289px] max-md:mx-auto">
           We publish authentic, high-quality, science-backed content for
           recreational athletes who care about performance, not just
           participation.
@@ -35,7 +35,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
       </section>
 
       <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
-        <h2 className="text-[#181A2A] w-full font-semibold text-lg">
+        <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Categories
         </h2>
         <ul className="grid gap-2 w-full">
@@ -43,7 +43,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
             <li key={fields.slug}>
               <a
                 href={`/categories/${fields.slug}`}
-                className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               >
                 {fields.name}
               </a>
@@ -53,14 +53,14 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
       </section>
 
       <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
-        <h2 className="text-[#181A2A] w-full font-semibold text-lg">
+        <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Quick Links
         </h2>
         <ul className="grid gap-2 w-full">
           <li>
             <a
               href="/"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Home
             </a>
@@ -68,7 +68,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Articles
             </a>
@@ -76,7 +76,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/about"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               About
             </a>
@@ -84,7 +84,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/categories"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Categories
             </a>
@@ -92,7 +92,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/authors"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Authors
             </a>
@@ -100,7 +100,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/running-resources"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Resources
             </a>
@@ -109,14 +109,14 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
       </section>
 
       <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
-        <h2 className="text-[#181A2A] w-full font-semibold text-lg">
+        <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Other Links
         </h2>
         <ul className="grid gap-2 w-full mb-6">
           <li>
             <a
               href="/terms-and-conditions"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Terms and Conditions
             </a>
@@ -124,14 +124,14 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           <li>
             <a
               href="/privacy-policy"
-              className="text-[#3B3C4A] opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Privacy Policy
             </a>
           </li>
         </ul>
 
-        <h2 className="text-[#181A2A] w-full font-semibold text-lg">
+        <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Social Links
         </h2>
 
@@ -142,7 +142,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
               href="/"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
-              <span className="icon-facebook block bg-[#3B3C4A] w-4 h-4" />
+              <span className="icon-facebook block bg-fog w-4 h-4" />
             </a>
           </li> */}
           <li>
@@ -152,7 +152,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
               aria-label="tr3 YouTube channel"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
-              <span className="icon-youtube block bg-[#3B3C4A] w-4 h-4" />
+              <span className="icon-youtube block bg-fog w-4 h-4" />
             </a>
           </li>
           <li>
@@ -162,13 +162,13 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
               aria-label="adamcantrun instagram"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
-              <span className="icon-instagram block bg-[#3B3C4A] w-4 h-4" />
+              <span className="icon-instagram block bg-fog w-4 h-4" />
             </a>
           </li>
         </ul>
       </section>
 
-      <section className="md:col-span-20 text-sm font-light text-center text-[#696A75] font-serif">
+      <section className="md:col-span-20 text-sm font-light text-center text-neutral-500 font-serif">
         <span>
           &copy; {format(new Date(), "yyyy")} tr3 — All rights reserved.
         </span>

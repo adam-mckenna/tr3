@@ -10,9 +10,12 @@
 
 @theme {
   --color-chardon: #f9f1e9;
+  --color-figure-stone: #eed9c3;
   --color-elba: #252621;
   --color-philippine-grey: #8c8c8c;
   --color-sea-blue: #05668d;
+  --color-sea-blue-dark: #044862;
+  --color-fog: #3b3c4a;
   --font-sans: "Manrope", sans-serif;
   --font-serif: "Lora", "serif";
   --container-lg: var(--content-max-width);

@@ -49,7 +49,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
         <a
           href={node.data.uri}
           target="_blank"
-          className="text-sea-blue hover:text-[#044862] focus:text-[#044862] underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+          className="text-sea-blue hover:text-sea-blue-dark focus:text-sea-blue-dark underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
           rel="noopener noreferrer"
         >
           {children}

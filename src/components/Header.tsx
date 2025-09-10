@@ -149,7 +149,7 @@ export const Header = ({ site, articles }: HeaderProps) => {
               autoComplete="off"
               onChange={({ target }) => setSearchQuery(target.value)}
               placeholder="Search..."
-              className="border-b-2 border-[#F4F4F5]/50 py-4 h-12 w-full transition-all text-[#F4F4F5] placeholder-[#F4F4F5]  focus:border-[#F4F4F5] focus:outline-none focus:border-b-4"
+              className="border-b-2 border-neutral-50/50 py-4 h-12 w-full transition-all text-neutral-50 placeholder-neutral-50 focus:border-neutral-50 focus:outline-none focus:border-b-4"
             />
 
             {searchQuery &&
