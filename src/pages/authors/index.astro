@@ -24,9 +24,9 @@ const { items: authors } = await contentfulClient.getEntries<Author>({
           const { name, slug, avatar, bio } = fields;
 
           return (
-            <article class="grid gap-0.5 content-start">
+            <article class="grid gap-0.5 text-center justify-center content-start">
               <div
-                class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                class="mx-auto h-[200px] w-[200px] bg-cover bg-center p-4 rounded-full md:h-[250px] md:w-[250px] mb-3"
                 style={{
                   backgroundImage: `url('${(avatar as Image).fields.file.url}')`,
                 }}

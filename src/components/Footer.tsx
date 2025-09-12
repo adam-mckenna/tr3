@@ -20,7 +20,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
       </div>
     )}
 
-    <div className="max-w-lg text-center py-8 lg:py-10 md:text-left mx-auto grid gap-6 md:grid-cols-20 md:gap-8 lg:gap-16">
+    <div className="max-w-lg text-center py-8 mx-auto grid gap-6 items-start md:grid-cols-20 md:gap-8 md:text-left lg:gap-16 lg:py-10">
       <section className="md:col-span-8 grid gap-2">
         <h2 className="text-neutral-950 font-semibold text-lg">About</h2>
 
@@ -34,7 +34,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
         </p>
       </section>
 
-      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
+      <section className="flex flex-wrap gap-3 content-start md:col-span-4">
         <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Categories
         </h2>
@@ -52,7 +52,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
         </ul>
       </section>
 
-      <section className="md:col-span-4 flex flex-wrap gap-3 content-start">
+      <section className="flex flex-wrap gap-3 content-start md:col-span-4">
         <h2 className="text-neutral-950 w-full font-semibold text-lg">
           Quick Links
         </h2>
