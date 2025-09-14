@@ -19,6 +19,7 @@
   --font-sans: "Manrope", sans-serif;
   --font-serif: "Lora", "serif";
   --container-lg: var(--content-max-width);
+  --breakpoint-lg: 76rem;
 }
 
 * {
