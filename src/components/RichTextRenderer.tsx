@@ -88,7 +88,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
                   : asset.fields.file.url
               }
               alt={asset.fields.description || asset.fields.title || "Image"}
-              className="mt-2 rounded-lg max-w-full h-auto"
+              className="mt-2 max-w-full h-auto"
             />
             <p className="text-philippine-grey text-xs font-light -mt-2">
               {asset.fields.description || asset.fields.title}

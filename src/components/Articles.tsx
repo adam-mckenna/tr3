@@ -9,18 +9,6 @@ import {
 } from "@utils/contentful";
 import { getFormattedDate } from "@utils/helpers";
 
-const LoadingSpinner = () => (
-  <div className="md:col-span-2 lg:col-span-3 h-full flex gap-2 items-center justify-center mx-auto">
-    <img
-      src="/images/spinner-dark.svg"
-      alt=""
-      className="animate-spin"
-      width={24}
-      height={24}
-    />
-  </div>
-);
-
 const limit = 9;
 
 export const Articles: FC = () => {
@@ -72,10 +60,10 @@ export const Articles: FC = () => {
   }, []);
 
   useEffect(() => {
+    fetchMore();
+
     const el = sentinel.current;
     if (!el) return;
-
-    fetchMore();
 
     const observer = new IntersectionObserver(handleObserver);
 
@@ -148,7 +136,16 @@ export const Articles: FC = () => {
         );
       })}
 
-      {isLoading && <LoadingSpinner />}
+      {isLoading &&
+        Array.from({ length: skipRef.current === 0 ? 9 : 3 }).map((_, i) => (
+          <article key={i} className="grid gap-0.5 content-start">
+            <div className="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3 bg-neutral-300  animate-pulse" />
+
+            <div className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline h-[53px] bg-neutral-300 animate-pulse" />
+            <div className="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2 h-[46px] bg-neutral-300 animate-pulse" />
+            <div className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline h-[24px] bg-neutral-300  animate-pulse" />
+          </article>
+        ))}
 
       <div ref={sentinel} />
     </div>
