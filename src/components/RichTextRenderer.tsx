@@ -43,7 +43,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
         <ol className="grid gap-1.5 list-decimal ml-4">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (_node, children) => (
-        <li className="pl-0.5">{children}</li>
+        <li className="pl-0.5 text-elba">{children}</li>
       ),
       [INLINES.HYPERLINK]: (node, children) => (
         <a
