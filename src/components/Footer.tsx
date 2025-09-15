@@ -105,6 +105,14 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
               Resources
             </a>
           </li>
+          <li>
+            <a
+              href="/vt1-calculator"
+              className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            >
+              VT1 Calculator
+            </a>
+          </li>
         </ul>
       </section>
 
