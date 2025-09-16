@@ -35,6 +35,11 @@ const { title, metaDescription, isHome } = Astro.props;
     </main>
 
     <!-- todo: fix type issue -->
-    <Footer isHome={isHome} categories={categories as any} />
+    <Footer
+      client:load
+      url={Astro.site}
+      isHome={isHome}
+      categories={categories as any}
+    />
   </body>
 </html>

@@ -2,16 +2,20 @@ import { format } from "date-fns";
 
 import { Category } from "src/utils/contentful";
 
-type FooterProps = { categories: Array<Category>; isHome: boolean };
+type FooterProps = {
+  url: URL | undefined;
+  categories: Array<Category & { contentTypeId: string }>;
+  isHome: boolean;
+};
 
-export const Footer = ({ categories, isHome }: FooterProps) => (
+export const Footer = ({ url, categories, isHome }: FooterProps) => (
   <footer className="bg-chardon w-full px-6 md:px-8 xl:px-0">
     {isHome && (
       <div className="bg-figure-stone -mx-6 md:-mx-8 md:px-8 lg:mx-0">
         <div className="flex items-center justify-center w-full max-w-lg mx-auto py-6 md:justify-end">
           <a
             className="flex gap-1 items-center px-6 text-lg py-3 uppercase text-elba/75 text-center font-semibold transition-all focus:text-elba hover:text-elba hover:gap-3 focus:gap-3 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-            href="articles"
+            href={`${url?.origin}/articles`}
           >
             <span className="tracking-[1px] ml-[1px]">View All Articles</span>
             <span className="mb-2">&#10230;</span>
@@ -42,7 +46,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           {categories.map(({ fields }) => (
             <li key={fields.slug}>
               <a
-                href={`/categories/${fields.slug}`}
+                href={`${url?.origin}/categories/${fields.slug}`}
                 className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
               >
                 {fields.name}
@@ -59,7 +63,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
         <ul className="grid gap-2 w-full">
           <li>
             <a
-              href="/"
+              href={url?.origin}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Home
@@ -67,7 +71,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/"
+              href={`${url?.origin}/articles`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Articles
@@ -75,7 +79,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/about"
+              href={`${url?.origin}/about`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               About
@@ -83,7 +87,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/categories"
+              href={`${url?.origin}/categories`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Categories
@@ -91,7 +95,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/authors"
+              href={`${url?.origin}/authors`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Authors
@@ -99,7 +103,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/running-resources"
+              href={`${url?.origin}/running-resources`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Resources
@@ -107,7 +111,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/vt1-calculator"
+              href={`${url?.origin}/vt1-calculator`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               VT1 Calculator
@@ -123,7 +127,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
         <ul className="grid gap-2 w-full mb-6">
           <li>
             <a
-              href="/terms-and-conditions"
+              href={`${url?.origin}/terms-and-conditions`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Terms and Conditions
@@ -131,7 +135,7 @@ export const Footer = ({ categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="/privacy-policy"
+              href={`${url?.origin}/privacy-policy`}
               className="text-fog opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               Privacy Policy
