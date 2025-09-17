@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const AdUnit = ({ slot }: { slot: string }) => {
   const insRef = useRef<HTMLModElement>(null);
-  const [empty, setEmpty] = useState(false);
+  const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
     try {
