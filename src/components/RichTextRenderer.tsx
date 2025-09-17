@@ -32,7 +32,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
             </p>
 
             {(count === 2 || count === 14 || count == 22) && (
-              <AdUnit slot="6496606373" />
+              <AdUnit />
             )}
           </>
         );

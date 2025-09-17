@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const AdUnit = ({ slot }: { slot: string }) => {
+export const AdUnit = () => {
   useEffect(() => {
     try {
       const w = window as unknown as {
@@ -14,12 +14,12 @@ export const AdUnit = ({ slot }: { slot: string }) => {
 
   return (
     <ins
-      className="adsbygoogle"
-      style={{ display: "block" }}
       data-ad-client="ca-pub-7130144081891362"
-      data-ad-slot={slot}
+      data-ad-slot="6496606373"
       data-ad-format="auto"
       data-full-width-responsive="true"
+      className="adsbygoogle"
+      style={{ display: "block" }}
     />
   );
 };
