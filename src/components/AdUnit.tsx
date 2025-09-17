@@ -18,7 +18,7 @@ export const AdUnit = ({ slot }: { slot: string }) => {
       data-ad-slot="6496606373"
       data-ad-format="auto"
       data-full-width-responsive="true"
-      className="adsbygoogle"
+      className="adsbygoogle mt-4"
       style={{ display: "block" }}
     />
   );
