@@ -51,4 +51,4 @@ export const AdUnit = ({ slot }: { slot: string }) => {
       data-full-width-responsive="true"
     />
   );
-}
+};

@@ -25,16 +25,25 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
         paragraphCounter.current += 1;
         const count = paragraphCounter.current;
 
-        return (
-          <>
-            <p className="text-elba leading-[1.6] tracking-[-.25px]">
-              {children}
-            </p>
+        const slots = {
+          2: "6496606373",
+          14: "9090980120",
+          22: "4659058324",
+        };
 
-            {count === 2 && <AdUnit slot="6496606373" />}
-            {count === 14 && <AdUnit slot="9090980120" />}
-            {count == 22 && <AdUnit slot="4659058324" />}
-          </>
+        const paragraph = (
+          <p className="text-elba leading-[1.6] tracking-[-.25px]">
+            {children}
+          </p>
+        );
+
+        return count === 2 || count === 14 || count === 22 ? (
+          <div>
+            <AdUnit slot={slots[count]} />
+            {paragraph}
+          </div>
+        ) : (
+          paragraph
         );
       },
       [BLOCKS.HEADING_2]: (_node, children) => (
