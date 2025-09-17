@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 
-export interface WindowWithAds extends Window {
-  adsbygoogle: Array<Object>;
-}
-declare let window: WindowWithAds;
-
 export const AdUnit = ({ slot }: { slot: string }) => {
   useEffect(() => {
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      const w = window as unknown as {
+        adsbygoogle: Array<Record<string, unknown>>;
+      };
+      (w.adsbygoogle = w.adsbygoogle || []).push({});
     } catch (e) {
       console.error("Adsense error", e);
     }
