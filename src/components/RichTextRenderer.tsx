@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import {
   documentToReactComponents,
   Options,
@@ -6,21 +6,37 @@ import {
 import { Document, BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 
 import { Image } from "@utils/contentful";
+import { AdUnit } from "@components/AdUnit";
 
 type RichTextRendererProps = {
   body: Document;
 };
 
 export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
+  const paragraphCounter = useRef(0);
+
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <strong>{text}</strong>,
       [MARKS.ITALIC]: (text) => <em>{text}</em>,
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (_node, children) => (
-        <p className="text-elba leading-[1.6] tracking-[-.25px]">{children}</p>
-      ),
+      [BLOCKS.PARAGRAPH]: (_node, children) => {
+        paragraphCounter.current += 1;
+        const count = paragraphCounter.current;
+
+        return (
+          <>
+            <p className="text-elba leading-[1.6] tracking-[-.25px]">
+              {children}
+            </p>
+
+            {(count === 2 || count === 14 || count == 22) && (
+              <AdUnit slot="6496606373" />
+            )}
+          </>
+        );
+      },
       [BLOCKS.HEADING_2]: (_node, children) => (
         <h2 className="text-elba font-[600] text-[22px] -tracking-[1px]">
           {children}
