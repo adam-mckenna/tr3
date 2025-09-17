@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const AdUnit = () => {
+export const AdUnit = ({ slot }: { slot: string }) => {
   useEffect(() => {
     try {
       const w = window as unknown as {
