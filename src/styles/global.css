@@ -33,3 +33,20 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
