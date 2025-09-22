@@ -21,6 +21,39 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
       [MARKS.ITALIC]: (text) => <em>{text}</em>,
     },
     renderNode: {
+      // YouTube video embeds
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const { videoId, title } = node.data.target.fields;
+
+        return (
+          <div>
+            <div className="video-container mb-4">
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen={true}
+              />
+            </div>
+            
+            {title && (
+              <p className="text-philippine-grey text-xs font-light -mt-2">
+                "{title}" |{" "}
+                <a
+                  className="text-sea-blue hover:text-sea-blue-dark focus:text-sea-blue-dark underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                  href="https://www.youtube.com/@tr3running"
+                  target="_blank"
+                >
+                  tr3 YouTube
+                </a>
+              </p>
+            )}
+          </div>
+        );
+      },
       [BLOCKS.PARAGRAPH]: (_node, children) => {
         paragraphCounter.current += 1;
         const count = paragraphCounter.current;

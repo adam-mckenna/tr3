@@ -12,6 +12,7 @@ const {
   publishedDate,
   featuredImage,
   article_author,
+  backgroundPosition,
   category: categoryFields,
 } = Astro.props;
 
@@ -63,7 +64,7 @@ const author = article_author[0].fields;
       </div>
 
       <div
-        class="w-full h-[300px] bg-philippine-grey z-20 relative mt-4 bg-cover bg-center"
+        class={`w-full aspect-video bg-philippine-grey z-20 relative mt-4 bg-cover ${backgroundPosition || "bg-center"}`}
         style={{
           backgroundImage: `url('${featuredImage.fields.file.url}')`,
         }}
