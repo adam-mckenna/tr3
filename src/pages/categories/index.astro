@@ -24,12 +24,13 @@ const { items: categories } = await contentfulClient.getEntries<Category>({
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         categories.map(({ fields }) => {
-          const { name, slug, featuredImage, description } = fields;
+          const { name, slug, featuredImage, description, backgroundPosition } =
+            fields;
 
           return (
             <article class="grid gap-0.5 content-start">
               <div
-                class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                class={`aspect-video w-full bg-cover p-4 mb-3 ${backgroundPosition || "bg-center"}`}
                 style={{
                   backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}

@@ -1,13 +1,7 @@
 ---
-import {
-  Image,
-  Article,
-  contentfulClient,
-  Author,
-  Category,
-} from "@utils/contentful";
-import { getFormattedDate } from "@utils/helpers";
+import { Image, contentfulClient, Author } from "@utils/contentful";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { Articles } from "@components/Articles";
 
 export const getStaticPaths = async () => {
   const { items: authors } = await contentfulClient.getEntries<Author>({
@@ -21,20 +15,7 @@ export const getStaticPaths = async () => {
   }));
 };
 
-const { items } = await contentfulClient.getEntries<Article>({
-  content_type: "article",
-  order: ["-fields.publishedDate"],
-});
-
 const { name, role, bio, avatar, slug } = Astro.props;
-
-const articles = items.filter(
-  ({ fields }) =>
-    fields.article_author &&
-    (fields.article_author as Array<Author>).some(
-      (author: Author) => author.fields.slug === slug,
-    ),
-);
 ---
 
 <BaseLayout title={`${name} - Author`} metaDescription={bio}>
@@ -66,77 +47,13 @@ const articles = items.filter(
     </p>
   </header>
 
-  {
-    articles.length > 0 && (
-      <section class="grid gap-6">
-        <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
-          <hr class="flex flex-grow w-fit border-top border-slate-500/50" />
-          <h2 class="text-lg font-semibold"> Articles by {name}</h2>
-          <hr class="flex flex-grow w-fit border-top border-slate-500/50" />
-        </header>
+  <section class="grid gap-6">
+    <header class="flex flex-wrap items-center gap-4 justify-between mt-10">
+      <hr class="flex flex-grow w-fit border-top border-slate-500/50" />
+      <h2 class="text-lg font-semibold">Articles by {name}</h2>
+      <hr class="flex flex-grow w-fit border-top border-slate-500/50" />
+    </header>
 
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map(({ fields }) => {
-            const {
-              title,
-              slug: articleSlug,
-              category: categoryFields,
-              publishedDate,
-              metaDescription,
-              featuredImage,
-            } = fields;
-
-            const category = (categoryFields as Category).fields.name;
-
-            return (
-              <article class="grid gap-0.5 content-start">
-                <div
-                  class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
-                  style={{
-                    backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
-                  }}
-                >
-                  <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
-                    {category}
-                  </p>
-                </div>
-
-                <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
-                  <a
-                    class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-                    href={new URL(`articles/${articleSlug}`, Astro.site)}
-                  >
-                    {title}
-                  </a>
-                </h3>
-                <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
-                  {metaDescription}
-                </p>
-
-                <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
-                  <span
-                    class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
-                    style={{
-                      backgroundImage: `url('${(avatar as Image).fields.file.url}')`,
-                    }}
-                  />
-                  <p class="text-sm font-semibold">{name}</p>
-                  <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
-                  <p class="text-sm">{getFormattedDate(publishedDate)}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-    )
-  }
-
-  {
-    articles.length === 0 && (
-      <section class="mt-12 text-center">
-        <p class="text-philippine-grey text-lg">No articles found by {name}</p>
-      </section>
-    )
-  }
+    <Articles client:load authorSlug={slug} />
+  </section>
 </BaseLayout>

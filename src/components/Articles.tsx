@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   Article,
@@ -11,7 +11,12 @@ import { getFormattedDate } from "@utils/helpers";
 
 const limit = 9;
 
-export const Articles: FC = () => {
+type ArticlesProps = {
+  categorySlug?: string;
+  authorSlug?: string;
+};
+
+export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
   const [articles, setArticles] = useState<Array<Article>>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,19 +35,47 @@ export const Articles: FC = () => {
     setIsLoading(true);
 
     try {
-      const { items } = await contentfulClient.getEntries<Article>({
+      const response = await contentfulClient.getEntries({
         content_type: "article",
         order: ["-fields.publishedDate"],
         limit,
         skip: skipRef.current,
       });
+      let items = response.items as unknown as Array<Article>;
+
+      const fetchedCount = items.length;
+
+      if (categorySlug) {
+        items = items.filter((article) => {
+          try {
+            return article.fields.category.fields.slug === categorySlug;
+          } catch {
+            return false;
+          }
+        });
+      }
+
+      if (authorSlug) {
+        items = items.filter((article) => {
+          try {
+            return (
+              Array.isArray(article.fields.article_author) &&
+              (article.fields.article_author as Array<Author>).some(
+                (author: Author) => author.fields.slug === authorSlug,
+              )
+            );
+          } catch {
+            return false;
+          }
+        });
+      }
 
       if (items.length > 0) {
         setArticles((prev) => [...prev, ...items] as Array<Article>);
-        skipRef.current += items.length;
+        skipRef.current += fetchedCount;
       }
 
-      if (items.length < limit) {
+      if (fetchedCount < limit) {
         hasMoreRef.current = false;
       }
     } catch (err) {
@@ -51,13 +84,16 @@ export const Articles: FC = () => {
       isLoadingRef.current = false;
       setIsLoading(false);
     }
-  }, []);
+  }, [categorySlug, authorSlug]);
 
-  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    if (entries[0].isIntersecting) {
-      fetchMore();
-    }
-  }, []);
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      if (entries[0].isIntersecting) {
+        fetchMore();
+      }
+    },
+    [fetchMore],
+  );
 
   useEffect(() => {
     fetchMore();
@@ -71,6 +107,12 @@ export const Articles: FC = () => {
     return () => observer.disconnect();
   }, [fetchMore]);
 
+  if (!articles.length) {
+    <section className="mt-12 text-center">
+      <p className="text-philippine-grey text-lg">No articles found</p>
+    </section>;
+  }
+
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {articles.map(({ fields }) => {
@@ -82,15 +124,16 @@ export const Articles: FC = () => {
           metaDescription,
           article_author,
           featuredImage,
+          backgroundPosition,
         } = fields;
 
         const category = (categoryFields as Category).fields.name;
         const author = (article_author[0] as Author).fields;
 
         return (
-          <article className="grid gap-0.5 content-start">
+          <article className="grid gap-0.5 content-start" key={slug}>
             <div
-              className="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+              className={`aspect-video w-full bg-cover p-4 mb-3 ${backgroundPosition || "bg-center"}`}
               style={{
                 backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
               }}
@@ -139,7 +182,7 @@ export const Articles: FC = () => {
       {isLoading &&
         Array.from({ length: skipRef.current === 0 ? 9 : 3 }).map((_, i) => (
           <article key={i} className="grid gap-0.5 content-start">
-            <div className="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3 bg-neutral-300  animate-pulse" />
+            <div className="aspect-video w-full bg-cover bg-center p-4 mb-3 bg-neutral-300  animate-pulse" />
 
             <div className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline h-[53px] bg-neutral-300 animate-pulse" />
             <div className="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2 h-[46px] bg-neutral-300 animate-pulse" />

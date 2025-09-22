@@ -29,7 +29,7 @@ const featuredArticle = articles.shift();
           aria-label={featuredArticle.fields.title}
         >
           <article
-            class="relative h-[400px] md:h-[600px] bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
+            class="relative aspect-video w-full bg-cover bg-center flex items-end transition-all ease-in-out group-focus:outline-none group-focus:ring-2 group-focus:ring-elba group-focus:ring-offset-2 group-focus:scale-102 group-hover:scale-102"
             style={{
               backgroundImage: `url('${(featuredArticle.fields.featuredImage as Image).fields.file.url}')`,
             }}
@@ -41,7 +41,7 @@ const featuredArticle = articles.shift();
                 {(featuredArticle.fields.category as Category).fields.name}
               </p>
 
-              <div class="flex items-center gap-2 md:gap-2.5 text-white font-serif w-max">
+              <div class="flex items-center gap-1.5 md:gap-2.5 text-white font-serif w-max">
                 <span
                   class="rounded-full inline-block bg-cover bg-center w-8 h-8 md:w-12 md:h-12 mr-1 md:mr-2 border-2 border-white"
                   style={{
@@ -97,7 +97,7 @@ const featuredArticle = articles.shift();
           return (
             <article class="grid gap-0.5 content-start">
               <div
-                class="h-[200px] bg-cover bg-center p-4 md:h-[300px] mb-3"
+                class="aspect-video w-full bg-cover bg-center p-4 mb-3"
                 style={{
                   backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
                 }}

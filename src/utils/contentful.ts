@@ -33,6 +33,7 @@ export interface Article {
     article_author: Array<Author>;
     featuredImage: Image;
     body: Document;
+    backgroundPosition: string;
   };
 }
 
@@ -43,6 +44,7 @@ export interface Category {
     name: EntryFields.Text;
     description: EntryFields.Text;
     featuredImage: Image;
+    backgroundPosition: string;
   };
 }
 
