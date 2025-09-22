@@ -36,7 +36,11 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-.inline-adsbygoogle > div,
+.inline-adsbygoogle > div {
+  max-width: 100% !important;
+  overflow: scroll !important;
+}
+
 .video-container {
   position: relative !important;
   width: 100% !important;
@@ -46,7 +50,6 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-bottom: 56.25% !important;
 }
 
-.inline-adsbygoogle iframe,
 .video-container iframe {
   position: absolute !important;
   top: 0 !important;
