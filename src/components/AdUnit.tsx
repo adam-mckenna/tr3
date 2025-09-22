@@ -44,7 +44,7 @@ export const AdUnit = ({ slot }: { slot: string }) => {
   return (
     <ins
       ref={insRef}
-      className={`max-w-[calc(100vw-32px)] !mx-auto md:max-w-full block adsbygoogle ${!empty && "mt-4"}`}
+      className={`max-w-[calc(100vw-32px)] !mx-auto md:max-w-full block inline-adsbygoogle adsbygoogle ${!empty && "mt-4"}`}
       data-ad-client="ca-pub-7130144081891362"
       data-ad-slot={slot}
       data-ad-format="auto"
