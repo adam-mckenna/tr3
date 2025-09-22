@@ -72,7 +72,7 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
                 </p>
               </div>
 
-              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
+              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline">
                 <a
                   class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                   href={new URL(`articles/${slug}`, Astro.site)}
@@ -93,7 +93,7 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
                 />
                 <p class="text-sm font-semibold">
                   <a
-                    class="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                    class="transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                     href={new URL(`authors/${author.slug}`, Astro.site)}
                   >
                     {author.name}

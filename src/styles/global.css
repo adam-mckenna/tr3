@@ -36,6 +36,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+.adsbygoogle > div,
 .video-container {
   position: relative;
   width: 100%;
@@ -45,6 +46,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-bottom: 56.25%;
 }
 
+.adsbygoogle iframe,
 .video-container iframe {
   position: absolute;
   top: 0;

@@ -143,9 +143,9 @@ export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
               </p>
             </div>
 
-            <h3 className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
+            <h3 className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline">
               <a
-                className="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                className="block transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                 href={`/articles/${slug}`}
               >
                 {title}
@@ -164,7 +164,7 @@ export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
               />
               <p className="text-sm font-semibold">
                 <a
-                  className="transition-all hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+                  className="transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                   href={`/authors/${author.slug}`}
                 >
                   {author.name}
@@ -182,11 +182,10 @@ export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
       {isLoading &&
         Array.from({ length: skipRef.current === 0 ? 9 : 3 }).map((_, i) => (
           <article key={i} className="grid gap-0.5 content-start">
-            <div className="aspect-video w-full bg-cover bg-center p-4 mb-3 bg-neutral-300  animate-pulse" />
-
-            <div className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline h-[53px] bg-neutral-300 animate-pulse" />
-            <div className="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2 h-[46px] bg-neutral-300 animate-pulse" />
-            <div className="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline h-[24px] bg-neutral-300  animate-pulse" />
+            <div className="aspect-video w-full mb-3 bg-neutral-300 animate-pulse" />
+            <div className="h-[53px] bg-neutral-300 animate-pulse" />
+            <div className="mt-[5px] mb-2 h-[46px] bg-neutral-300 animate-pulse" />
+            <div className="h-[24px] bg-neutral-300  animate-pulse" />
           </article>
         ))}
 

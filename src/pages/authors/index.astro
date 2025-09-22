@@ -32,7 +32,7 @@ const { items: authors } = await contentfulClient.getEntries<Author>({
                 }}
               />
 
-              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline focus:underline">
+              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline">
                 <a
                   class="transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                   href={new URL(`authors/${slug}`, Astro.site)}
