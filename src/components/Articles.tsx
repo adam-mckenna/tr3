@@ -13,10 +13,17 @@ const limit = 9;
 
 type ArticlesProps = {
   categorySlug?: string;
+  initialSkip?: number;
   authorSlug?: string;
+  loadMore?: boolean;
 };
 
-export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
+export const Articles = ({
+  categorySlug,
+  authorSlug,
+  loadMore = true,
+  initialSkip = 0,
+}: ArticlesProps) => {
   const [articles, setArticles] = useState<Array<Article>>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,7 +31,7 @@ export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
   const sentinel = useRef<HTMLDivElement | null>(null);
 
   // Have to use ref for IntersectionObserver otherwise it wouldn't recognise state updates.
-  const skipRef = useRef<number>(0);
+  const skipRef = useRef<number>(initialSkip);
   const hasMoreRef = useRef<boolean>(true);
   const isLoadingRef = useRef<boolean>(false);
 
@@ -97,6 +104,8 @@ export const Articles = ({ categorySlug, authorSlug }: ArticlesProps) => {
 
   useEffect(() => {
     fetchMore();
+
+    if (!loadMore) return;
 
     const el = sentinel.current;
     if (!el) return;

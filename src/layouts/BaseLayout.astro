@@ -2,7 +2,14 @@
 import BaseHead from "@components/BaseHead.astro";
 import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
-import { Article, Category, contentfulClient } from "@utils/contentful";
+import { Article, Category, contentfulClient, Image } from "@utils/contentful";
+
+interface Props {
+  title: string;
+  metaDescription: string;
+  isHome?: boolean;
+  preloadImage?: Image;
+}
 
 const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
@@ -14,12 +21,17 @@ const { items: categories } = await contentfulClient.getEntries<Category>({
   order: ["-fields.name"] as any,
 });
 
-const { title, metaDescription, isHome } = Astro.props;
+const { title, metaDescription, isHome, preloadImage } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <BaseHead title={title} description={metaDescription} isHome={isHome} />
+  <BaseHead
+    title={title}
+    description={metaDescription}
+    isHome={isHome}
+    preloadImage={preloadImage}
+  />
 
   <body>
     <!-- todo: fix type issue -->
@@ -37,7 +49,7 @@ const { title, metaDescription, isHome } = Astro.props;
     <Footer
       client:load
       url={Astro.site}
-      isHome={isHome}
+      isHome={isHome || false}
       categories={categories as any}
     />
   </body>

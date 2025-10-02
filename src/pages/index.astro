@@ -9,6 +9,7 @@ import {
 import { getFormattedDate } from "@utils/helpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@utils/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { Articles } from "@components/Articles";
 
 const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
@@ -18,7 +19,12 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
 const featuredArticle = articles.shift();
 ---
 
-<BaseLayout title={SITE_TITLE} metaDescription={SITE_DESCRIPTION} isHome={true}>
+<BaseLayout
+  preloadImage={featuredArticle?.fields.featuredImage as unknown as Image}
+  title={SITE_TITLE}
+  metaDescription={SITE_DESCRIPTION}
+  isHome={true}
+>
   <section aria-label="featured article" class="w-full gap-6">
     <h1 class="sr-only">{SITE_TITLE}</h1>
     {
@@ -78,69 +84,6 @@ const featuredArticle = articles.shift();
       <hr class="flex flex-grow w-fit border-top border-slate-500/50" />
     </header>
 
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {
-        articles.map(({ fields }) => {
-          const {
-            title,
-            slug,
-            category: categoryFields,
-            publishedDate,
-            metaDescription,
-            article_author,
-            featuredImage,
-          } = fields;
-
-          const category = (categoryFields as Category).fields.name;
-          const author = (article_author[0] as Author).fields;
-
-          return (
-            <article class="grid gap-0.5 content-start">
-              <div
-                class="aspect-video w-full bg-cover bg-center p-4 mb-3"
-                style={{
-                  backgroundImage: `url('${(featuredImage as Image).fields.file.url}')`,
-                }}
-              >
-                <p class="bg-white py-1 uppercase text-xs font-extrabold text-elba px-2 w-fit">
-                  {category}
-                </p>
-              </div>
-
-              <h3 class="font-bold text-elba text-xl -tracking-[.6px] leading-[26px] hover:underline">
-                <a
-                  class="block transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-                  href={new URL(`articles/${slug}`, Astro.site)}
-                >
-                  {title}
-                </a>
-              </h3>
-              <p class="text-philippine-grey font-light -tracking-[.125px] leading-[23px] mt-[5px] mb-2">
-                {metaDescription}
-              </p>
-
-              <div class="flex items-center mt-1 gap-1 md:gap-1.5 text-elba font-serif w-max">
-                <span
-                  class="rounded-full inline-block bg-cover bg-center w-6 h-6 border-2 border-elba mr-1"
-                  style={{
-                    backgroundImage: `url('${author.avatar.fields.file.url}')`,
-                  }}
-                />
-                <p class="text-sm font-semibold">
-                  <a
-                    class="transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
-                    href={new URL(`authors/${author.slug}`, Astro.site)}
-                  >
-                    {author.name}
-                  </a>
-                </p>
-                <span class="bg-elba/50 w-0.5 h-0.5 rounded-full" />
-                <p class="text-sm">{getFormattedDate(publishedDate)}</p>
-              </div>
-            </article>
-          );
-        })
-      }
-    </div>
+    <Articles loadMore={false} initialSkip={1} client:load />
   </section>
 </BaseLayout>

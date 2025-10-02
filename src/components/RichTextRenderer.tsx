@@ -38,7 +38,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
                 allowFullScreen={true}
               />
             </div>
-            
+
             {title && (
               <p className="text-philippine-grey text-xs font-light -mt-2">
                 "{title}" |{" "}
