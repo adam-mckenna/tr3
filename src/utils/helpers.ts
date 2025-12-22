@@ -4,3 +4,13 @@ export const getFormattedDate = (isoDate: string) => {
   const date = new Date(isoDate);
   return format(date, "MMMM do, yyyy");
 };
+
+export const slugify = (string: string) =>
+  string
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");

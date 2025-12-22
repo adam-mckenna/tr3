@@ -23,7 +23,6 @@ const removeTrailingSlash = (url: string) => url.replace(/\/+$/, "");
 const canonicalUrl = removeTrailingSlash(
   new URL(Astro.url.pathname, Astro.site).toString(),
 );
-
 const {
   isHome,
   title,

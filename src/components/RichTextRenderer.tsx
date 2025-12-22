@@ -7,6 +7,7 @@ import { Document, BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 
 import { Image } from "@utils/contentful";
 import { AdUnit } from "@components/AdUnit";
+import { slugify } from "@utils/helpers";
 
 type RichTextRendererProps = {
   body: Document;
@@ -41,7 +42,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
 
             {title && (
               <p className="text-philippine-grey text-xs font-light -mt-2">
-                "{title}" |{" "}
+                "{title}" |&nbsp;
                 <a
                   className="text-sea-blue hover:text-sea-blue-dark focus:text-sea-blue-dark underline transition-all focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
                   href="https://www.youtube.com/@tr3running"
@@ -79,15 +80,37 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
           paragraph
         );
       },
+      [BLOCKS.HEADING_1]: (_node, children) => (
+        <h1
+          id={slugify(children as string)}
+          className="text-elba font-[600] text-[28px] -tracking-[1px]"
+        >
+          {children}
+        </h1>
+      ),
       [BLOCKS.HEADING_2]: (_node, children) => (
-        <h2 className="text-elba font-[600] text-[22px] -tracking-[1px]">
+        <h2
+          id={slugify(children as string)}
+          className="text-elba font-[600] text-[22px] -tracking-[1px]"
+        >
           {children}
         </h2>
       ),
       [BLOCKS.HEADING_3]: (_node, children) => (
-        <h3 className="text-elba font-[600] text-[18px] -tracking-[.75px]">
+        <h3
+          id={slugify(children as string)}
+          className="text-elba font-[600] text-[18px] -tracking-[.75px]"
+        >
           {children}
         </h3>
+      ),
+      [BLOCKS.HEADING_4]: (_node, children) => (
+        <h4
+          id={slugify(children as string)}
+          className="text-elba font-[600] text-[16px] -tracking-[.75px]"
+        >
+          {children}
+        </h4>
       ),
       [BLOCKS.QUOTE]: (_node, children) => (
         <blockquote className="p-4 border-s-4 border-gray-300 bg-gray-50 italic">

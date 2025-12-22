@@ -15,7 +15,6 @@ const { items: articles } = await contentfulClient.getEntries<Article>({
   content_type: "article",
   order: ["-fields.publishedDate"],
 });
-// todo: fix type issue
 const { items: categories } = await contentfulClient.getEntries<Category>({
   content_type: "category",
   order: ["-fields.name"] as any,
@@ -34,7 +33,6 @@ const { title, metaDescription, isHome, preloadImage } = Astro.props;
   />
 
   <body>
-    <!-- todo: fix type issue -->
     <Header
       site={Astro.site?.toString() || ""}
       articles={articles as any}
@@ -45,7 +43,6 @@ const { title, metaDescription, isHome, preloadImage } = Astro.props;
       <slot />
     </main>
 
-    <!-- todo: fix type issue -->
     <Footer
       client:load
       url={Astro.site}
