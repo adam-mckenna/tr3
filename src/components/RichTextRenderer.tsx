@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import React, { FC, useRef } from "react";
 import {
   documentToReactComponents,
   Options,
@@ -12,6 +12,9 @@ import { slugify } from "@utils/helpers";
 type RichTextRendererProps = {
   body: Document;
 };
+
+const getTextFromReactNode = (node: React.ReactNode) =>
+  typeof node === "string" ? node : Array.isArray(node) ? node.join("") : "";
 
 export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
   const paragraphCounter = useRef(0);
@@ -82,7 +85,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
       },
       [BLOCKS.HEADING_1]: (_node, children) => (
         <h1
-          id={slugify(children as string)}
+          id={slugify(getTextFromReactNode(children))}
           className="text-elba font-[600] text-[28px] -tracking-[1px]"
         >
           {children}
@@ -90,7 +93,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
       ),
       [BLOCKS.HEADING_2]: (_node, children) => (
         <h2
-          id={slugify(children as string)}
+          id={slugify(getTextFromReactNode(children))}
           className="text-elba font-[600] text-[22px] -tracking-[1px]"
         >
           {children}
@@ -98,7 +101,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
       ),
       [BLOCKS.HEADING_3]: (_node, children) => (
         <h3
-          id={slugify(children as string)}
+          id={slugify(getTextFromReactNode(children))}
           className="text-elba font-[600] text-[18px] -tracking-[.75px]"
         >
           {children}
@@ -106,7 +109,7 @@ export const RichTextRenderer: FC<RichTextRendererProps> = ({ body }) => {
       ),
       [BLOCKS.HEADING_4]: (_node, children) => (
         <h4
-          id={slugify(children as string)}
+          id={slugify(getTextFromReactNode(children))}
           className="text-elba font-[600] text-[16px] -tracking-[.75px]"
         >
           {children}

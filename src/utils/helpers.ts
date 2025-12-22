@@ -11,6 +11,7 @@ export const slugify = (string: string) =>
     .trim()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[^a-z\s-]/g, "")
     .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+    .replace(/-+/g, "-")
+    .replace(/^-+/, "");
