@@ -28,7 +28,7 @@
 .icon-youtube {
   display: inline-block;
   background-color: currentColor;
-  mask-image: url("/images/icons/icon-instagram.svg");
+  mask-image: url("/images/icons/icon-youtube.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -37,7 +37,16 @@
 .icon-instagram {
   display: inline-block;
   background-color: currentColor;
-  mask-image: url("/images/icons/icon-youtube.svg");
+  mask-image: url("/images/icons/icon-instagram.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon-tiktok {
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("/images/icons/icon-tiktok.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;

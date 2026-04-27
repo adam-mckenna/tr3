@@ -161,7 +161,7 @@ export const Footer = ({ url, categories, isHome }: FooterProps) => (
             <a
               href="https://www.youtube.com/@tr3running"
               target="_blank"
-              aria-label="tr3 YouTube channel"
+              aria-label="tr3 runningYouTube channel"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-youtube block bg-fog w-4 h-4" />
@@ -169,12 +169,22 @@ export const Footer = ({ url, categories, isHome }: FooterProps) => (
           </li>
           <li>
             <a
-              href="https://www.instagram.com/adamcantrun/"
+              href="https://www.instagram.com/tr3running/"
               target="_blank"
-              aria-label="adamcantrun instagram"
+              aria-label="tr3 running instagram"
               className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
             >
               <span className="icon-instagram block bg-fog w-4 h-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.tiktok.com/@tr3running"
+              target="_blank"
+              aria-label="tr3 running tiktok"
+              className="flex opacity-75 transition-all hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-elba focus:ring-offset-2"
+            >
+              <span className="icon-tiktok block bg-fog w-4 h-4" />
             </a>
           </li>
         </ul>
